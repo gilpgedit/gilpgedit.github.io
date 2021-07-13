@@ -34,11 +34,20 @@
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
-      align-items: flex-end;
+      align-items: baseline;
     }
 
     h1 {
       margin: 0;
+    }
+
+    #lblabrir {
+      cursor: pointer;
+    }
+
+    #abrir {
+      position: absolute;
+      top: -1000rem;
     }
 
     .contenido {
@@ -101,7 +110,10 @@
 <body>
   <header>
     <h1>GilPG Edit</h1>
-    <input id="abrir" type="file">
+    <label id="lblabrir">
+      <u>Abrir</u>
+      <input id="abrir" type="file">
+    </label>
     <a id="guardar" download="archiv.html">Guardar</a>
     <button type="button">Ejecutar</button>
     <label>
