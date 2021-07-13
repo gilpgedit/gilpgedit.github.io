@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GilPG Edit</title>
+  <script src="lib/codemirror.js"></script>
+  <link rel="stylesheet" href="lib/codemirror.css">
+  <script src="addon/hint/show-hint.js"></script>
+  <script src="addon/hint/xml-hint.js"></script>
+  <script src="addon/hint/html-hint.js"></script>
+  <script src="mode/xml/xml.js"></script>
+  <script src="mode/javascript/javascript.js"></script>
+  <script src="mode/css/css.js"></script>
+  <script src="mode/htmlmixed/htmlmixed.js"></script>
+  <style>
+    html {
+      width: 100vw;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      flex-direction: column;
+      align-content: stretch;
+      box-sizing: border-box;
+    }
+    .contenido {
+      flex-grow: 1;
+      margin: 0;
+      display: flex;
+      align-content: stretch;
+      box-sizing: border-box;
+    }
+    section {
+      width: 0;
+      flex-grow: 1;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    #codemirror {
+      width: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    iframe {
+      display: block;
+      flex-grow: 1;
+      box-sizing: border-box;
+    }
+
+    .CodeMirror {
+      border-bottom: 1px solid #888;
+      flex-grow: 1;
+      box-sizing: border-box;
+    }
+
+    .CodeMirror-hints {
+      position: fixed;
+      list-style-type: none;
+      background-color: #e7e7e7;
+      padding: 0;
+      overflow: auto;
+      z-index: 1004;
+      box-sizing: border-box;
+    }
+
+    .CodeMirror-hints li {
+      padding: 0.2em;
+      cursor: default;
+    }
+
+    .CodeMirror-hints li:hover {
+      background-color: #cfcfcf;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gil Edit</h1>
+    <input id="abrir" type="file">
+    <a id="guardar" download="archiv.html">Guardar</a>
+    <button type="button">Ejecutar</button>
+    <label>
+      <input id="chkVentana" type="checkbox" checked>
+      Mostrar ventana
+    </label>
+    <label>
+      <input id="chkConsola" type="checkbox">
+      Mostrar consola
+    </label>
+  </header>
+  <div class="contenido">
+    <div id="codemirror"></div>
+    <section id="secVentana">
+      <h2 id="título">Ventana</h2>
+      <iframe title="Ventana"></iframe>
+    </section>
+    <section id="secConsola">
+      <h2>Consola</h2>
+      <pre id=consola></pre>
+    </section>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
