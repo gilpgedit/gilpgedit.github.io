@@ -18,7 +18,6 @@
       width: 100vw;
       height: 100vh;
       box-sizing: border-box;
-      color-scheme: dark light;
     }
 
     body {
@@ -30,6 +29,12 @@
       align-content: stretch;
       box-sizing: border-box;
     }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
     .contenido {
       flex-grow: 1;
       margin: 0;
@@ -37,6 +42,7 @@
       align-content: stretch;
       box-sizing: border-box;
     }
+
     section {
       width: 0;
       flex-grow: 1;
@@ -88,7 +94,7 @@
 </head>
 <body>
   <header>
-    <h1>Gil Edit</h1>
+    <h1>GilPG Edit</h1>
     <input id="abrir" type="file">
     <a id="guardar" download="archiv.html">Guardar</a>
     <button type="button">Ejecutar</button>
