@@ -30,8 +30,6 @@ body {
 
 header {
   display: flex;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
   flex-wrap: wrap;
   align-items: center;
 }
