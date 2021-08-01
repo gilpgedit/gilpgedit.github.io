@@ -35,7 +35,7 @@ header {
   align-items: center;
 }
 
-@supports not (gap: 1em) {
+@supports not (gap: 0.5rem) {
   .flex-container {
     margin: -0.5rem;
   }
