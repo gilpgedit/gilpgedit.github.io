@@ -13,7 +13,7 @@ html {
 }
 
 @media (prefers-color-scheme: light) {
-  #código {
+  iframe {
     background-color: white;
   }
 }
