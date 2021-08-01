@@ -36,11 +36,11 @@ header {
 }
 
 @supports not (gap: 0.5rem) {
-  .flex-container {
+  header {
     margin: -0.5rem;
   }
 
-  .flex-container>* {
+  header>* {
     margin: 0.5rem;
   }
 }
