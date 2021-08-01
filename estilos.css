@@ -30,19 +30,15 @@ body {
 
 header {
   display: flex;
-  gap: 0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
   flex-wrap: wrap;
   align-items: center;
 }
 
-@supports not (gap: 0.5rem) {
-  header {
-    margin: -0.5rem;
-  }
-
-  header>* {
-    margin: 0.5rem;
-  }
+header>* {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 h1 {
