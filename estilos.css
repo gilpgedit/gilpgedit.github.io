@@ -7,7 +7,7 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-  #código {
+  iframe {
     background-color: white;
   }
 }
@@ -99,6 +99,7 @@ iframe {
   position: fixed;
   list-style-type: none;
   background-color: #e7e7e7;
+  color: black;
   padding: 0;
   overflow: auto;
   z-index: 1004;
