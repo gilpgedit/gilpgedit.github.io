@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GilPG Edit</title>
+  <link rel="icon" sizes="32x32" href="/favicon.ico">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="GilPGEdit">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="/img/icono2048.png">
+  <link rel="apple-touch-icon" sizes="256x256" href="/img/icono256.png">
+  <link rel="apple-touch-icon" sizes="1024x1024" href="/img/icono1024.png">
+  <link rel="apple-touch-icon" sizes="2048x2048" href="/img/icono2048.png">
   <script src="lib/codemirror.js"></script>
   <link rel="stylesheet" href="lib/codemirror.css">
   <script src="addon/hint/show-hint.js"></script>
@@ -13,99 +23,8 @@
   <script src="mode/javascript/javascript.js"></script>
   <script src="mode/css/css.js"></script>
   <script src="mode/htmlmixed/htmlmixed.js"></script>
-  <style>
-    html {
-      width: 100vw;
-      height: 100vh;
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-      flex-direction: column;
-      align-content: stretch;
-      box-sizing: border-box;
-    }
-
-    header {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      align-items: baseline;
-    }
-
-    h1 {
-      margin: 0;
-    }
-
-    #lblabrir {
-      cursor: pointer;
-    }
-
-    #abrir {
-      position: absolute;
-      top: -1000rem;
-    }
-
-    .contenido {
-      flex-grow: 1;
-      margin: 0;
-      display: flex;
-      align-content: stretch;
-      box-sizing: border-box;
-    }
-
-    section {
-      width: 0;
-      flex-grow: 1;
-      overflow: auto;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-
-    #codemirror {
-      width: 0;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-
-    iframe {
-      display: block;
-      flex-grow: 1;
-      box-sizing: border-box;
-    }
-
-    .CodeMirror {
-      border-bottom: 1px solid #888;
-      flex-grow: 1;
-      box-sizing: border-box;
-    }
-
-    .CodeMirror-hints {
-      position: fixed;
-      list-style-type: none;
-      background-color: #e7e7e7;
-      padding: 0;
-      overflow: auto;
-      z-index: 1004;
-      box-sizing: border-box;
-    }
-
-    .CodeMirror-hints li {
-      padding: 0.2em;
-      cursor: default;
-    }
-
-    .CodeMirror-hints li:hover {
-      background-color: #cfcfcf;
-    }
-  </style>
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="theme/cobalt.css">
 </head>
 <body>
   <header>
@@ -114,24 +33,31 @@
       <u>Abrir</u>
       <input id="abrir" type="file">
     </label>
-    <a id="guardar" download="archiv.html">Guardar</a>
+    <a id="guardar" download="index.html">Guardar</a>
     <button type="button">Ejecutar</button>
-    <label>
-      <input id="chkVentana" type="checkbox" checked>
-      Mostrar ventana
-    </label>
-    <label>
-      <input id="chkConsola" type="checkbox">
-      Mostrar consola
-    </label>
+    <fieldset>
+      <legend>Mostrar</legend>
+      <label>
+        <input id="códigoMuestra" type="checkbox" checked>
+        Código
+      </label>
+      <label>
+        <input id="ventanaMuestra" type="checkbox" checked>
+        Ventana
+      </label>
+      <label>
+        <input id="consolaMuestra" type="checkbox">
+        Consola
+      </label>
+    </fieldset>
   </header>
   <div class="contenido">
-    <div id="codemirror"></div>
-    <section id="secVentana">
-      <h2 id="título">Ventana</h2>
+    <div id="código"></div>
+    <section id="ventanaSec">
+      <h2 id="ventanaTítulo">Ventana</h2>
       <iframe title="Ventana"></iframe>
     </section>
-    <section id="secConsola">
+    <section id="consolaSec">
       <h2>Consola</h2>
       <pre id=consola></pre>
     </section>

@@ -1,63 +1,91 @@
+registraServiceWorker();
+
 let editor = null;
-const código = document.querySelector("#codemirror");
-const iframe = document.querySelector("iframe");
-const ejecutar = document.querySelector("button");
-/** @type {HTMLInputElement|null} */
-const chkVentana = document.querySelector("#chkVentana");
-/** @type {HTMLInputElement|null} */
-const chkConsola = document.querySelector("#chkConsola");
 /** @type {HTMLInputElement|null} */
 const abrir = document.querySelector("#abrir");
 /** @type {HTMLAnchorElement|null} */
 const guardar = document.querySelector("#guardar");
+const ejecutar = document.querySelector("button");
 /** @type {HTMLElement|null} */
-const secVentana = document.querySelector("#secVentana");
+const código = document.querySelector("#código");
+/** @type {HTMLInputElement|null} */
+const códigoMuestra = document.querySelector("#códigoMuestra");
+const ventana = document.querySelector("iframe");
 /** @type {HTMLElement|null} */
-const secConsola = document.querySelector("#secConsola");
+const ventanaTítulo = document.querySelector("#ventanaTítulo");
 /** @type {HTMLElement|null} */
-const título = document.querySelector("#título");
+const ventanaSec = document.querySelector("#ventanaSec");
+/** @type {HTMLInputElement|null} */
+const ventanaMuestra = document.querySelector("#ventanaMuestra");
+/** @type {HTMLInputElement|null} */
+const consolaMuestra = document.querySelector("#consolaMuestra");
+/** @type {HTMLElement|null} */
+const consolaSec = document.querySelector("#consolaSec");
 
 if (abrir) {
-  abrir.addEventListener("change", abreArchivo);
+  abrir.addEventListener("change", archivoAbre);
 }
 
 if (ejecutar) {
   ejecutar.addEventListener("click", timeout);
 }
 
-if (chkVentana) {
-  actualizaSecVentana();
-  chkVentana.addEventListener("click", actualizaSecVentana);
+if (códigoMuestra) {
+  códigoActualiza();
+  códigoMuestra.addEventListener("click", códigoActualiza);
 }
 
-if (chkConsola) {
-  actualizaSecConsola();
-  chkConsola.addEventListener("click", actualizaSecConsola);
+if (ventanaMuestra) {
+  ventanaSecActualiza();
+  ventanaMuestra.addEventListener("click", ventanaSecActualiza);
+}
+
+if (consolaMuestra) {
+  consolaSecActualiza();
+  consolaMuestra.addEventListener("click", consolaSecActualiza);
 }
 
 if (código) {
-  // @ts-ignore
-  editor = CodeMirror(código, {
-    mode: "text/html",
-    extraKeys: { "Ctrl-Space": "autocomplete" },
-    tabSize: 2,
-    lineNumbers: true
-  });
+  if (window.matchMedia
+    && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // @ts-ignore
+    editor = CodeMirror(código, {
+      mode: "text/html",
+      theme: "cobalt",
+      extraKeys: { "Ctrl-Space": "autocomplete" },
+      tabSize: 2,
+      lineNumbers: true
+    });
+  } else {
+    // @ts-ignore
+    editor = CodeMirror(código, {
+      mode: "text/html",
+      extraKeys: { "Ctrl-Space": "autocomplete" },
+      tabSize: 2,
+      lineNumbers: true
+    });
+  }
   const texto = decodeURIComponent(location.hash.replace(/^\#/, ""));
   editor.setValue(texto);
-  configuraGuardar(texto);
+  guardarActualiza(texto);
   editor.on("change", contenidoCambia);
 }
 
-function actualizaSecConsola() {
-  if (chkConsola && secConsola) {
-    secConsola.style.display = chkConsola.checked ? '' : 'none';
+function códigoActualiza() {
+  if (códigoMuestra && código) {
+    código.style.display = códigoMuestra.checked ? '' : 'none';
   }
 }
 
-function actualizaSecVentana() {
-  if (chkVentana && secVentana) {
-    secVentana.style.display = chkVentana.checked ? '' : 'none';
+function ventanaSecActualiza() {
+  if (ventanaMuestra && ventanaSec) {
+    ventanaSec.style.display = ventanaMuestra.checked ? '' : 'none';
+  }
+}
+
+function consolaSecActualiza() {
+  if (consolaMuestra && consolaSec) {
+    consolaSec.style.display = consolaMuestra.checked ? '' : 'none';
   }
 }
 
@@ -66,10 +94,10 @@ function timeout() {
 }
 
 function ejecuta() {
-  if (iframe && código) {
+  if (ventana && código) {
     const src =
-      chkConsola && chkConsola.checked ? adaptaCódigo() : editor.getValue();
-    iframe.srcdoc = src;
+      consolaMuestra && consolaMuestra.checked ? códigoAdapta() : editor.getValue();
+    ventana.srcdoc = src;
     // setTimeout(() => {
     //   if (título && iframe.contentDocument && iframe.contentDocument.title) {
     //     título.textContent = iframe.contentDocument.title;
@@ -78,7 +106,7 @@ function ejecuta() {
   }
 }
 
-function abreArchivo() {
+function archivoAbre() {
   const selección = fileSeleccionado();
   if (selección) {
     const reader = new FileReader();
@@ -86,10 +114,14 @@ function abreArchivo() {
       if (typeof reader.result === "string" && editor && guardar) {
         guardar.download = selección.name;
         editor.setValue(reader.result);
-        configuraGuardar(reader.result);
+        guardarActualiza(reader.result);
       }
     }
-    reader.onerror = () => muestraError(reader.error);
+    reader.onerror = () => {
+      if (reader.error) {
+        errorMuestra(reader.error);
+      }
+    };
     reader.readAsText(selección);
   }
 }
@@ -101,23 +133,36 @@ function fileSeleccionado() {
 function contenidoCambia() {
   const texto = editor.getValue();
   location.hash = encodeURIComponent(texto)
-  configuraGuardar(texto);
+  guardarActualiza(texto);
 }
 
 /** @param {string} texto */
-function configuraGuardar(texto) {
+function guardarActualiza(texto) {
   if (guardar) {
     guardar.href =
       URL.createObjectURL(new Blob([texto], { type: "text/html" }));
   }
 }
 
-function muestraError(e) {
+/** @param {DOMException} e */
+function errorMuestra(e) {
   console.log(e);
   alert(e.message);
 }
 
-function adaptaCódigo() {
+async function registraServiceWorker() {
+  try {
+    if (navigator.serviceWorker) {
+      const registro = await navigator.serviceWorker.register("sw.js");
+      console.log("Service Worker registrado.");
+      console.log(registro);
+    }
+  } catch (e) {
+    errorMuestra(e);
+  }
+}
+
+function códigoAdapta() {
   if (editor) {
     const src = editor.getValue();
     return src.replace("<script", /* html */ `<script src="adapta.js"></script><script`);
