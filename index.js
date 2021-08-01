@@ -47,6 +47,7 @@ if (consolaMuestra) {
 
 if (código) {
   const estilos = getComputedStyle(código);
+  alert(estilos.backgroundColor);
   if (estilos.backgroundColor === "rgb(0, 0, 0)") {
     // @ts-ignore
     editor = CodeMirror(código, {
