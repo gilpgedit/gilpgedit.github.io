@@ -46,20 +46,30 @@ if (consolaMuestra) {
 }
 
 if (código) {
-  if (window.matchMedia
-    && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // @ts-ignore
-    editor = CodeMirror(código, {
-      mode: "text/html",
-      theme: "cobalt",
-      extraKeys: { "Ctrl-Space": "autocomplete" },
-      tabSize: 2,
-      lineNumbers: true
-    });
+  if (window.matchMedia) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // @ts-ignore
+      editor = CodeMirror(código, {
+        mode: "text/html",
+        theme: "cobalt",
+        extraKeys: { "Ctrl-Space": "autocomplete" },
+        tabSize: 2,
+        lineNumbers: true
+      });
+    } else {
+      // @ts-ignore
+      editor = CodeMirror(código, {
+        mode: "text/html",
+        extraKeys: { "Ctrl-Space": "autocomplete" },
+        tabSize: 2,
+        lineNumbers: true
+      });
+    }
   } else {
     // @ts-ignore
     editor = CodeMirror(código, {
       mode: "text/html",
+      theme: "cobalt",
       extraKeys: { "Ctrl-Space": "autocomplete" },
       tabSize: 2,
       lineNumbers: true
