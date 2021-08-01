@@ -6,6 +6,18 @@ html {
   box-sizing: border-box;
 }
 
+@media (prefers-color-scheme: dark) {
+  #código {
+    background-color: black;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  #código {
+    background-color: white;
+  }
+}
+
 body {
   margin: 0;
   display: flex;
