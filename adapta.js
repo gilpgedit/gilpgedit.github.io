@@ -1,7 +1,7 @@
 const cl = console.clear;
 const lo = console.log;
 const err = console.error;
-window.console.clear = (/** @type {any} */ ...parámetros) => {
+window.console.clear = (/** @type {any[]} */ ...parámetros) => {
   cl.apply(null, parámetros);
   const consola = window.parent.document.querySelector("#consola");
   if (consola) {

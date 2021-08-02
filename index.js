@@ -104,14 +104,16 @@ function timeout() {
 
 function ejecuta() {
   if (ventana && código) {
-    const src =
-      consolaMuestra && consolaMuestra.checked ? códigoAdapta() : editor.getValue();
+    const src = consolaMuestra && consolaMuestra.checked ?
+      códigoAdapta() :
+      editor.getValue();
     ventana.srcdoc = src;
-    // setTimeout(() => {
-    //   if (título && iframe.contentDocument && iframe.contentDocument.title) {
-    //     título.textContent = iframe.contentDocument.title;
-    //   }
-    // }, 1000);
+    setInterval(() => {
+      if (ventanaTítulo && ventana.contentDocument
+        && ventana.contentDocument.title) {
+        ventanaTítulo.textContent = ventana.contentDocument.title;
+      }
+    }, 1000);
   }
 }
 
