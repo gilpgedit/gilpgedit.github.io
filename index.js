@@ -1,4 +1,4 @@
-// registraServiceWorker();
+registraServiceWorker()
 
 let editor = null;
 /** @type {HTMLInputElement|null} */
