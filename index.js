@@ -1,4 +1,4 @@
-registraServiceWorker();
+// registraServiceWorker();
 
 let editor = null;
 /** @type {HTMLInputElement|null} */
@@ -55,7 +55,7 @@ if (código) {
     mode: "text/html",
     theme: "cobalt",
     extraKeys: { "Ctrl-Space": "autocomplete" },
-    tabSize: 2,
+    tabSize: 1,
     lineNumbers: true
    });
   } else {
@@ -63,7 +63,7 @@ if (código) {
    editor = CodeMirror(código, {
     mode: "text/html",
     extraKeys: { "Ctrl-Space": "autocomplete" },
-    tabSize: 2,
+    tabSize: 1,
     lineNumbers: true
    });
   }
@@ -72,7 +72,7 @@ if (código) {
   editor = CodeMirror(código, {
    mode: "text/html",
    extraKeys: { "Ctrl-Space": "autocomplete" },
-   tabSize: 2,
+   tabSize: 1,
    lineNumbers: true
   });
  }
