@@ -5,7 +5,7 @@ let editor = null;
 const abrir = document.querySelector("#abrir");
 /** @type {HTMLAnchorElement|null} */
 const guardar = document.querySelector("#guardar");
-const ejecutar = document.querySelector("button");
+const ejecutar = document.querySelector("#ejecutar");
 /** @type {HTMLElement|null} */
 const código = document.querySelector("#código");
 /** @type {HTMLInputElement|null} */
@@ -164,15 +164,15 @@ function errorMuestra(e) {
 }
 
 async function registraServiceWorker() {
- try {
-  if (navigator.serviceWorker) {
-   const registro = await navigator.serviceWorker.register("sw.js");
-   console.log("Service Worker registrado.");
-   console.log(registro);
-  }
- } catch (e) {
-  errorMuestra(e);
- }
+ // try {
+ //  if (navigator.serviceWorker) {
+ //   const registro = await navigator.serviceWorker.register("sw.js");
+ //   console.log("Service Worker registrado.");
+ //   console.log(registro);
+ //  }
+ // } catch (e) {
+ //  errorMuestra(e);
+ // }
 }
 
 onmessage = evt => {

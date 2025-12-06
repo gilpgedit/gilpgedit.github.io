@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,53 +28,79 @@
  <link rel="stylesheet" href="estilos.css">
  <link rel="stylesheet" href="theme/cobalt.css">
 </head>
+
 <body>
  <header>
+  <button
+    id="abrirArchivo"
+    type="button"
+    popovertarget="archivo"
+    aria-label="Abrir archivo">
+   Archivo
+  </button>
+  <output id="ventanaTítulo"></output>
   <h1>GilPG Edit</h1>
-  <label id="lblabrir">
-   <u>Abrir</u>
-   <input id="abrir" type="file" accept="text/html">
-  </label>
-  <a id="guardar" download="index.html">Descargar</a>
-  <button type="button">Ejecutar</button>
-  <fieldset>
-   <legend>Mostrar</legend>
-   <label>
-    <input id="códigoMuestra" type="checkbox" checked>
-    Código
-   </label>
-   <label>
-    <input id="ventanaMuestra" type="checkbox" checked>
-    Ventana
-   </label>
-   <label>
-    <input id="consolaMuestra" type="checkbox">
-    Consola
-   </label>
-  </fieldset>
-  <small>
-   <a rel="license"
-     href="http://creativecommons.org/licenses/by/4.0/"><img
-      alt="Licencia Creative Commons" style="border-width:0"
-      src="/img/80x15.png" /></a>
-   <br />Esta
-   <span xmlns:dct="http://purl.org/dc/terms/"
-     href="http://purl.org/dc/dcmitype/InteractiveResource"
-     rel="dct:type">obra</span>
-   de
-   <a xmlns:cc="http://creativecommons.org/ns#"
-     href="https://gilpgedit.github.io" property="cc:attributionName"
-     rel="cc:attributionURL">Gilberto Pacheco Gallegos</a>
-   está bajo una
-   <a rel="license"
-     href="http://creativecommons.org/licenses/by/4.0/">Licencia
-    Creative Commons Atribución 4.0 Internacional</a>.
-  </small>
+  <button type="button" id="ejecutar">Ejecutar</button>
  </header>
+ <section popover="auto" id="archivo">
+  <ul>
+   <li>
+    <label id="lblabrir">
+     <u>Abrir</u>
+     <input id="abrir" type="file" accept="text/html">
+    </label>
+   </li>
+   <li>
+    <a id="guardar" download="index.html">Descargar</a>
+   </li>
+   <li>
+    <fieldset>
+     <legend>Mostrar</legend>
+     <p>
+      <label>
+       <input id="códigoMuestra" type="checkbox" checked>
+       Código
+      </label>
+     </p>
+     <p>
+      <label>
+       <input id="ventanaMuestra" type="checkbox" checked>
+       Ventana
+      </label>
+     </p>
+     <p>
+      <label>
+       <input id="consolaMuestra" type="checkbox">
+       Consola
+      </label>
+     </p>
+    </fieldset>
+   </li>
+  </ul>
+  <footer>
+   <p>
+    <a rel="license"
+      href="http://creativecommons.org/licenses/by/4.0/"><img
+       alt="Licencia Creative Commons" style="border-width:0"
+       src="/img/80x15.png" /></a>
+    Esta
+    <span xmlns:dct="http://purl.org/dc/terms/"
+      href="http://purl.org/dc/dcmitype/InteractiveResource"
+      rel="dct:type">obra</span>
+    de
+    <a xmlns:cc="http://creativecommons.org/ns#"
+      href="https://gilpgedit.github.io" property="cc:attributionName"
+      rel="cc:attributionURL">Gilberto Pacheco Gallegos</a>
+    está bajo una
+    <a rel="license"
+      href="http://creativecommons.org/licenses/by/4.0/">Licencia
+     Creative Commons Atribución 4.0 Internacional</a>.
+   </p>
+  </footer>
+ </section>
  <div class="contenido">
   <div id="código"></div>
   <section id="ventanaSec">
-   <h2 id="ventanaTítulo">Ventana</h2>
    <iframe title="Ventana"></iframe>
   </section>
   <section id="consolaSec">
@@ -83,4 +110,5 @@
  </div>
  <script src="index.js"></script>
 </body>
+
 </html>

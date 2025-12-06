@@ -1,46 +1,95 @@
 html {
-  color-scheme: dark light;
-  font-family: sans-serif;
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
+ color-scheme: dark light;
+ font-family: sans-serif;
+ width: 100vw;
+ height: 100vh;
+ box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
-  iframe {
-    background-color: white;
-  }
+ iframe {
+  background-color: white;
+ }
 }
 
 @media (prefers-color-scheme: light) {
-  iframe {
-    background-color: white;
-  }
+ iframe {
+  background-color: white;
+ }
 }
 
 body {
-  margin: 0;
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  flex-direction: column;
-  align-content: stretch;
-  box-sizing: border-box;
+ margin: 0;
+ display: flex;
+ height: 100svh;
+ width: 100vw;
+ flex-direction: column;
+ align-content: stretch;
+ box-sizing: border-box;
 }
 
 header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+ display: flex;
+ align-items: center;
+}
+
+#abrirArchivo {
+ anchor-name: --abrirArchivo;
 }
 
 header>* {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+ margin-left: 0.5rem;
+ margin-right: 0.5rem;
 }
 
-h1 {
-  margin: 0;
+header h1 {
+ font-size: 1rem;
+ margin: 0;
+}
+
+#ventanaTítulo {
+ flex: 1 1 0;
+ text-align: center;
+ overflow: hidden;
+}
+
+#archivo {
+ position: absolute;
+ position-anchor: --abrirArchivo;
+ top: 3.5rem;
+ top: anchor(bottom);
+ left: 0.5rem;
+ left: anchor(left);
+ margin: unset;
+ transform:
+  translateY(-50%) scaleY(0);
+ transition-property:
+  overlay, display, transform;
+ transition-behavior:
+  allow-discrete;
+ transition-duration: 1s;
+}
+
+#archivo:popover-open {
+ transform: translateY(0);
+}
+
+@starting-style {
+
+ #archivo:popover-open {
+  transform:
+   translateY(-50%) scaleY(0);
+ }
+
+}
+
+#archivo ul {
+ list-style-type: none;
+ padding: 0;
+}
+
+#archivo ul li {
+ margin-block: 1rem;
 }
 
 .error {
@@ -48,73 +97,73 @@ h1 {
 }
 
 #lblabrir {
-  cursor: pointer;
+ cursor: pointer;
 }
 
 #abrir {
-  position: absolute;
-  top: -1000rem;
+ position: absolute;
+ top: -1000rem;
 }
 
 label {
-  display: inline-block;
+ display: inline-block;
 }
 
 .contenido {
-  flex-grow: 1;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: stretch;
-  box-sizing: border-box;
+ flex-grow: 1;
+ margin: 0;
+ display: flex;
+ flex-wrap: wrap;
+ align-content: stretch;
+ box-sizing: border-box;
 }
 
 #código {
-  width: 0;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+ width: 0;
+ flex-grow: 1;
+ display: flex;
+ flex-direction: column;
+ box-sizing: border-box;
 }
 
-section {
-  width: 0;
-  flex-grow: 1;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+section:not(#archivo) {
+ width: 0;
+ flex-grow: 1;
+ overflow: auto;
+ display: flex;
+ flex-direction: column;
+ box-sizing: border-box;
 }
 
 iframe {
-  display: block;
-  flex-grow: 1;
-  box-sizing: border-box;
+ display: block;
+ flex-grow: 1;
+ box-sizing: border-box;
 }
 
 .CodeMirror {
-  border-bottom: 1px solid #888;
-  flex-grow: 1;
-  box-sizing: border-box;
-  font-size: 1rem;
+ border-bottom: 1px solid #888;
+ flex-grow: 1;
+ box-sizing: border-box;
+ font-size: 1rem;
 }
 
 .CodeMirror-hints {
-  position: fixed;
-  list-style-type: none;
-  background-color: #e7e7e7;
-  color: black;
-  padding: 0;
-  overflow: auto;
-  z-index: 1004;
-  box-sizing: border-box;
+ position: fixed;
+ list-style-type: none;
+ background-color: #e7e7e7;
+ color: black;
+ padding: 0;
+ overflow: auto;
+ z-index: 1004;
+ box-sizing: border-box;
 }
 
 .CodeMirror-hints li {
-  padding: 0.2em;
-  cursor: default;
+ padding: 0.2em;
+ cursor: default;
 }
 
 .CodeMirror-hints li:hover {
-  background-color: #cfcfcf;
+ background-color: #cfcfcf;
 }
