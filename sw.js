@@ -1,6 +1,8 @@
 /* Espera 11 minutos después de hacer los cambios en tu sitio, para depués
  * actualizar este archivo. */
-const CACHE = "gilpgedit-1.03";
+const VERSION = "2.00"
+/** Nombre del archivo de cache. */
+const CACHE = "gilpgedit"
 
 /** Archivos requeridos para que la aplicación funcione fuera de línea. */
 const ARCHIVOS = [
@@ -441,37 +443,54 @@ const ARCHIVOS = [
  "theme/yonce.css",
  "theme/zenburn.css",
  "/"
-];
+]
 
-self.addEventListener("install", evt => {
- console.log("Service Worker instalado.");
- // @ts-ignore
- evt.waitUntil(cargaCache());
-});
-
-self.addEventListener("fetch", evt => {
- // @ts-ignore
- if (evt.request.method === "GET") {
-  // @ts-ignore
-  evt.respondWith(usaCache(evt));
- }
-});
-
-self.addEventListener("activate", () => console.log("Service Worker activo."));
-
-async function cargaCache() {
- console.log("Intentando cargar cache: " + CACHE);
- const cache = await caches.open(CACHE);
- await cache.addAll(ARCHIVOS);
- console.log("Cache cargado: " + CACHE);
+// Verifica si el código corre dentro de un service worker.
+if (self instanceof ServiceWorkerGlobalScope) {
+ // Evento al empezar a instalar el servide worker,
+ self.addEventListener("install",
+  (/** @type {ExtendableEvent} */ evt) => {
+   console.log("El service worker se está instalando.")
+   evt.waitUntil(llenaElCache())
+  })
+ // Evento al solicitar información a la red.
+ self.addEventListener("fetch", (/** @type {FetchEvent} */ evt) => {
+  if (evt.request.method === "GET") {
+   evt.respondWith(buscaLaRespuestaEnElCache(evt))
+  }
+ })
+ // Evento cuando el service worker se vuelve activo.
+ self.addEventListener("activate",
+  () => console.log("El service worker está activo."))
 }
-
-async function usaCache(evt) {
- const cache = await caches.open(CACHE);
- const response = await cache.match(evt.request, { ignoreSearch: true });
- if (response) {
-  return response;
+async function llenaElCache() {
+ console.log("Intentando cargar caché:", CACHE)
+ // Borra todos los cachés.
+ const keys = await caches.keys()
+ for (const key of keys) {
+  await caches.delete(key)
+ }
+ // Abre el caché de este service worker.
+ const cache = await caches.open(CACHE)
+ // Carga el listado de ARCHIVOS.
+ await cache.addAll(ARCHIVOS)
+ console.log("Cache cargado:", CACHE)
+ console.log("Versión:", VERSION)
+}
+/** @param {FetchEvent} evt */
+async function buscaLaRespuestaEnElCache(evt) {
+ // Abre el caché.
+ const cache = await caches.open(CACHE)
+ const request = evt.request
+ /* Busca la respuesta a la solicitud en el contenido del caché, sin
+  * tomar en cuenta la parte después del símbolo "?" en la URL. */
+ const response = await cache.match(request, { ignoreSearch: true })
+ if (response === undefined) {
+  /* Si no la encuentra, empieza a descargar de la red y devuelve
+   * la promesa. */
+  return fetch(request)
  } else {
-  return fetch(evt.request);
+  // Si la encuentra, devuelve la respuesta encontrada en el caché.
+  return response
  }
 }

@@ -1,4 +1,4 @@
-
+Falta configuracion para nuevo pwa con screenshots, verificar maskable y apple en vite ´wa
 Comando para generar el listado:
 Get-ChildItem -path . -Recurse | Select Directory,Name | Out-File archivos.txt
 
