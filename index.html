@@ -38,11 +38,11 @@
     aria-label="Abrir archivo">
    Archivo
   </button>
-  <output id="ventanaTítulo"></output>
+  <output id="windowTitle"></output>
   <h1>GilPG Edit</h1>
-  <button type="button" id="ejecutar">Ejecutar</button>
+  <button id="ejecutar" type="button">Ejecutar</button>
  </header>
- <section popover="auto" id="archivo">
+ <section id="archivo" popover="auto">
   <ul>
    <li>
     <label id="lblabrir">
@@ -58,19 +58,19 @@
      <legend>Mostrar</legend>
      <p>
       <label>
-       <input id="códigoMuestra" type="checkbox" checked>
+       <input id="codeShow" type="checkbox" checked>
        Código
       </label>
      </p>
      <p>
       <label>
-       <input id="ventanaMuestra" type="checkbox" checked>
+       <input id="windowShow" type="checkbox" checked>
        Ventana
       </label>
      </p>
      <p>
       <label>
-       <input id="consolaMuestra" type="checkbox">
+       <input id="consoleShow" type="checkbox">
        Consola
       </label>
      </p>
@@ -98,16 +98,14 @@
    </p>
   </footer>
  </section>
- <div class="contenido">
-  <div id="código"></div>
-  <section id="ventanaSec">
-   <iframe title="Ventana"></iframe>
-  </section>
-  <section id="consolaSec">
+ <section id="content">
+  <div id="code"></div>
+  <iframe title="Ventana"></iframe>
+  <section id="consoleSec">
    <h2>Consola</h2>
-   <pre id=consola></pre>
+   <pre></pre>
   </section>
- </div>
+ </section>
  <script src="index.js"></script>
 </body>
 

@@ -2,13 +2,13 @@ html {
  color-scheme: dark light;
  font-family: sans-serif;
  width: 100vw;
- height: 100vh;
+ height: 100svh;
  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
  iframe {
-  background-color: white;
+  background-color: black;
  }
 }
 
@@ -30,16 +30,8 @@ body {
 
 header {
  display: flex;
+ gap: 0.5rem;
  align-items: center;
-}
-
-#abrirArchivo {
- anchor-name: --abrirArchivo;
-}
-
-header>* {
- margin-left: 0.5rem;
- margin-right: 0.5rem;
 }
 
 header h1 {
@@ -47,10 +39,16 @@ header h1 {
  margin: 0;
 }
 
-#ventanaTítulo {
+#windowTitle {
  flex: 1 1 0;
  text-align: center;
+ white-space: nowrap;
+ text-overflow: ellipsis;
  overflow: hidden;
+}
+
+#abrirArchivo {
+ anchor-name: --abrirArchivo;
 }
 
 #archivo {
@@ -105,39 +103,31 @@ header h1 {
  top: -1000rem;
 }
 
-label {
- display: inline-block;
-}
-
-.contenido {
+#content {
  flex-grow: 1;
  margin: 0;
  display: flex;
- flex-wrap: wrap;
  align-content: stretch;
  box-sizing: border-box;
 }
 
-#código {
- width: 0;
- flex-grow: 1;
- display: flex;
- flex-direction: column;
+iframe {
+ flex: 1 1 0;
+ overflow: auto;
  box-sizing: border-box;
 }
 
-section:not(#archivo) {
- width: 0;
- flex-grow: 1;
+#code {
+ flex: 1 1 0;
  overflow: auto;
  display: flex;
  flex-direction: column;
  box-sizing: border-box;
 }
 
-iframe {
- display: block;
- flex-grow: 1;
+#consoleSec {
+ flex: 1 1 0;
+ overflow: auto;
  box-sizing: border-box;
 }
 

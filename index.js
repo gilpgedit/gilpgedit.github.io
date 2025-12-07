@@ -1,211 +1,187 @@
 registraServiceWorker()
 
-let editor = null;
-/** @type {HTMLInputElement|null} */
-const abrir = document.querySelector("#abrir");
-/** @type {HTMLAnchorElement|null} */
-const guardar = document.querySelector("#guardar");
-const ejecutar = document.querySelector("#ejecutar");
-/** @type {HTMLElement|null} */
-const código = document.querySelector("#código");
-/** @type {HTMLInputElement|null} */
-const códigoMuestra = document.querySelector("#códigoMuestra");
-const ventana = document.querySelector("iframe");
-/** @type {HTMLElement|null} */
-const ventanaTítulo = document.querySelector("#ventanaTítulo");
-/** @type {HTMLElement|null} */
-const ventanaSec = document.querySelector("#ventanaSec");
-/** @type {HTMLInputElement|null} */
-const ventanaMuestra = document.querySelector("#ventanaMuestra");
-/** @type {HTMLInputElement|null} */
-const consolaMuestra = document.querySelector("#consolaMuestra");
-/** @type {HTMLElement|null} */
-const consolaSec = document.querySelector("#consolaSec");
-/** @type {HTMLElement|null} */
-const consola = document.querySelector("#consola");
+// @ts-ignore
+let editor = null
+/** @type {HTMLInputElement} */
+const abrir = querySelector(document, "#abrir")
+/** @type {HTMLAnchorElement} */
+const guardar = querySelector(document, "#guardar")
+const ejecutar = querySelector(document, "#ejecutar")
+const code = querySelector(document, "#code")
+/** @type {HTMLInputElement} */
+const codeShow = querySelector(document, "#codeShow")
+/** @type {HTMLIFrameElement} */
+const iframe = querySelector(document, "iframe")
+/** @type {HTMLOutputElement} */
+const windowTitle = querySelector(document, "#windowTitle")
+/** @type {HTMLInputElement} */
+const windowShow = querySelector(document, "#windowShow")
+/** @type {HTMLInputElement} */
+const consoleShow = querySelector(document, "#consoleShow")
+const consoleSec = querySelector(document, "#consoleSec")
+const consoleElement = querySelector(document, "pre")
 
-if (abrir) {
- abrir.addEventListener("change", archivoAbre);
-}
-
-if (ejecutar) {
- ejecutar.addEventListener("click", timeout);
-}
-
-if (códigoMuestra) {
- códigoActualiza();
- códigoMuestra.addEventListener("click", códigoActualiza);
-}
-
-if (ventanaMuestra) {
- ventanaSecActualiza();
- ventanaMuestra.addEventListener("click", ventanaSecActualiza);
-}
-
-if (consolaMuestra) {
- consolaSecActualiza();
- consolaMuestra.addEventListener("click", consolaSecActualiza);
-}
-
-if (código) {
- if (window.matchMedia) {
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-   // @ts-ignore
-   editor = CodeMirror(código, {
-    mode: "text/html",
-    theme: "cobalt",
-    extraKeys: { "Ctrl-Space": "autocomplete" },
-    tabSize: 1,
-    lineNumbers: true
-   });
-  } else {
-   // @ts-ignore
-   editor = CodeMirror(código, {
-    mode: "text/html",
-    extraKeys: { "Ctrl-Space": "autocomplete" },
-    tabSize: 1,
-    lineNumbers: true
-   });
-  }
+abrir.addEventListener("change", archivoAbre)
+ejecutar.addEventListener("click", timeout)
+códigoActualiza()
+codeShow.addEventListener("click", códigoActualiza)
+ventanaSecActualiza()
+windowShow.addEventListener("click", ventanaSecActualiza)
+consolaSecActualiza()
+consoleShow.addEventListener("click", consolaSecActualiza)
+if (window.matchMedia) {
+ if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  // @ts-ignore
+  editor = CodeMirror(code, {
+   mode: "text/html",
+   theme: "cobalt",
+   extraKeys: { "Ctrl-Space": "autocomplete" },
+   tabSize: 1,
+   lineNumbers: true
+  })
  } else {
   // @ts-ignore
-  editor = CodeMirror(código, {
+  editor = CodeMirror(code, {
    mode: "text/html",
    extraKeys: { "Ctrl-Space": "autocomplete" },
    tabSize: 1,
    lineNumbers: true
-  });
+  })
  }
- const texto = decodeURIComponent(location.hash.replace(/^\#/, ""));
- editor.setValue(texto);
- guardarActualiza(texto);
- editor.on("change", contenidoCambia);
+} else {
+ // @ts-ignore
+ editor = CodeMirror(code, {
+  mode: "text/html",
+  extraKeys: { "Ctrl-Space": "autocomplete" },
+  tabSize: 1,
+  lineNumbers: true
+ })
 }
+const texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
+editor.setValue(texto)
+guardarActualiza(texto)
+editor.on("change", contenidoCambia)
 
 function códigoActualiza() {
- if (códigoMuestra && código) {
-  código.style.display = códigoMuestra.checked ? '' : 'none';
- }
+ code.style.display = codeShow.checked ? '' : 'none'
 }
 
 function ventanaSecActualiza() {
- if (ventanaMuestra && ventanaSec) {
-  ventanaSec.style.display = ventanaMuestra.checked ? '' : 'none';
- }
+ iframe.style.display = windowShow.checked ? '' : 'none'
 }
 
 function consolaSecActualiza() {
- if (consolaMuestra && consolaSec) {
-  consolaSec.style.display = consolaMuestra.checked ? '' : 'none';
- }
+ consoleSec.style.display = consoleShow.checked ? '' : 'none'
 }
 
 function timeout() {
- setTimeout(ejecuta, 100);
+ setTimeout(ejecuta, 100)
 }
 
 function ejecuta() {
- if (ventana && código) {
-  const src = consolaMuestra && consolaMuestra.checked ?
-   códigoAdapta() :
-   editor.getValue();
-  ventana.srcdoc = src;
-  setInterval(() => {
-   if (ventanaTítulo && ventana.contentDocument
-    && ventana.contentDocument.title) {
-    ventanaTítulo.textContent = ventana.contentDocument.title;
-   }
-  }, 1000);
- }
+ // @ts-ignore
+ const src = editor.getValue().replace(
+   /* html */`</title>`,
+    /* html */ `</title><script src="adapta.js"></script>`
+ )
+
+ iframe.srcdoc = src
 }
 
 function archivoAbre() {
- const selección = fileSeleccionado();
+ const selección = fileSeleccionado()
  if (selección) {
-  const reader = new FileReader();
+  const reader = new FileReader()
   reader.onload = () => {
+   // @ts-ignore
    if (typeof reader.result === "string" && editor && guardar) {
-    guardar.download = selección.name;
-    editor.setValue(reader.result);
-    guardarActualiza(reader.result);
+    guardar.download = selección.name
+    editor.setValue(reader.result)
+    guardarActualiza(reader.result)
    }
   }
   reader.onerror = () => {
    if (reader.error) {
-    errorMuestra(reader.error);
+    errorMuestra(reader.error)
    }
-  };
-  reader.readAsText(selección);
+  }
+  reader.readAsText(selección)
  }
 }
 
 function fileSeleccionado() {
- return abrir && abrir.files && abrir.files[0];
+ return abrir && abrir.files && abrir.files[0]
 }
 
+/**
+ * @template {HTMLElement} T
+ * @param {HTMLElement | Document | ShadowRoot} parent
+ * @param {string} selector
+ * @returns {T}
+ */
+function querySelector(parent, selector) {
+ const element = parent.querySelector(selector)
+ if (!element) throw new Error(selector + " not found.")
+ // @ts-ignore
+ return element
+}
 function contenidoCambia() {
- const texto = editor.getValue();
+ // @ts-ignore
+ const texto = editor.getValue()
  location.hash = encodeURIComponent(texto)
- guardarActualiza(texto);
+ guardarActualiza(texto)
 }
 
 /** @param {string} texto */
 function guardarActualiza(texto) {
  if (guardar) {
   guardar.href =
-   URL.createObjectURL(new Blob([texto], { type: "text/html" }));
+   URL.createObjectURL(new Blob([texto], { type: "text/html" }))
  }
 }
 
 /** @param {DOMException} e */
 function errorMuestra(e) {
- console.log(e);
- alert(e.message);
+ console.log(e)
+ alert(e.message)
 }
 
 async function registraServiceWorker() {
- // try {
- //  if (navigator.serviceWorker) {
- //   const registro = await navigator.serviceWorker.register("sw.js");
- //   console.log("Service Worker registrado.");
- //   console.log(registro);
- //  }
- // } catch (e) {
- //  errorMuestra(e);
- // }
+ try {
+  if (navigator.serviceWorker) {
+   const registro = await navigator.serviceWorker.register("sw.js");
+   console.log("Service Worker registrado.");
+   console.log(registro);
+  }
+ } catch (e) {
+  errorMuestra(e);
+ }
 }
 
 onmessage = evt => {
- const { op, parámetros } = evt.data;
+ const { op, args } = evt.data
  switch (op) {
   case "clear":
-   if (consola) {
-    consola.textContent = "";
-   }
-   break;
-  case "log":
-   if (consola) {
-    const div = document.createElement("div");
-    div.textContent = parámetros.join(" ");
-    consola.append(div);
-   }
-   break;
-  case "error":
-   if (consola) {
-    const div = document.createElement("div");
-    div.classList.add("error");
-    div.textContent = parámetros.join(" ");
-    consola.append(div);
-   }
-   break;
- }
-};
-
-function códigoAdapta() {
- if (editor) {
-  const src = editor.getValue();
-  return src.replace("<script", /* html */ `<script src="adapta.js"></script><script`);
- } else {
-  return "";
+   consoleElement.textContent = ""
+   break
+  case "log": {
+   const div = document.createElement("div")
+   div.textContent = (args || []).join(" ")
+   consoleElement.append(div)
+  }
+   break
+  case "error": {
+   const div = document.createElement("div")
+   div.classList.add("error")
+   div.textContent = (args || []).join(" ")
+   consoleElement.append(div)
+  }
+   break
+  case "title": {
+   const title = (args || [])[0]
+   document.title = title + " | GilPG Edit"
+   windowTitle.value = title
+  }
+   break
  }
 }
