@@ -28,18 +28,25 @@ body {
  box-sizing: border-box;
 }
 
-header {
+body>header {
+ /* position: fixed; */
  display: flex;
  gap: 0.5rem;
  align-items: center;
+ left: env(titlebar-area-x, 0);
+ top: env(titlebar-area-y, 0);
+ height: env(titlebar-area-height, 2rem);
+ width: env(titlebar-area-width, 100%);
 }
 
-header h1 {
+body>header h1 {
+ -webkit-app-region: drag;
  font-size: 1rem;
  margin: 0;
 }
 
 #windowTitle {
+ -webkit-app-region: drag;
  flex: 1 1 0;
  text-align: center;
  white-space: nowrap;
@@ -113,6 +120,7 @@ header h1 {
 
 iframe {
  flex: 1 1 0;
+ min-width: 0;
  overflow: auto;
  box-sizing: border-box;
 }

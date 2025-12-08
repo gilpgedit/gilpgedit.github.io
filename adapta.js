@@ -25,9 +25,9 @@
   }
   const target = document.querySelector('title')
   if (target) {
-   top.postMessage({ op: "title", args: [document.title] }, "*")
+   top.postMessage({ op: "title", args: [document.title || "-"] }, "*")
    const observer = new MutationObserver(() => {
-    top.postMessage({ op: "title", args: [document.title] }, "*")
+    top.postMessage({ op: "title", args: [document.title || "-"] }, "*")
    })
    const config = { childList: true }
    observer.observe(target, config)
