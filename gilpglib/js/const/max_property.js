@@ -1,0 +1,1 @@
+export const max_property = "max"

@@ -1,0 +1,1 @@
+export const required_attribute = "required"

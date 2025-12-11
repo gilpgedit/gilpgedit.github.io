@@ -1,0 +1,1 @@
+export const header_attribute = "header"

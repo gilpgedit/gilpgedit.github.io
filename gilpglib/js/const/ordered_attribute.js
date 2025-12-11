@@ -1,0 +1,1 @@
+export const ordered_attribute = "ordered"

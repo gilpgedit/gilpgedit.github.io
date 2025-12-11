@@ -1,0 +1,1 @@
+export const value_property = "value"

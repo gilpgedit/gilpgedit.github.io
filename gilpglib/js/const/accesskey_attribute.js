@@ -1,0 +1,1 @@
+export const accesskey_attribute = "accesskey"

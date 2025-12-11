@@ -1,0 +1,1 @@
+export const reading_class = "reading"

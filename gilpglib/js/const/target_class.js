@@ -1,0 +1,1 @@
+export const target_class = "target"

@@ -1,0 +1,1 @@
+export const text_slot = "text"

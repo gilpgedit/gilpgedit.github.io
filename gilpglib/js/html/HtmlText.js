@@ -1,0 +1,3 @@
+/**
+ * @typedef {{ innerHTML: string }} HtmlText
+ */

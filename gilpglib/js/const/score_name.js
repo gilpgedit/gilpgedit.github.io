@@ -1,0 +1,1 @@
+export const score_name = "s"

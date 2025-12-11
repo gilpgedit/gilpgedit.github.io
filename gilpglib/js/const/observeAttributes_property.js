@@ -1,0 +1,1 @@
+export const observeAttributes_property = "observeAttributes"

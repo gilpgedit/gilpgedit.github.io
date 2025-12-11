@@ -1,0 +1,1 @@
+export const valueAsNumber_property = "valueAsNumber"

@@ -1,0 +1,34 @@
+{
+  "name": "gilpgedit.github.io",
+  "version": "1.0.0",
+  "description": "Editor simplificado para trabajar con html y JavaScript.",
+  "type": "module",
+  "private": true,
+  "targets": {
+    "default": {
+      "distDir": "./docs"
+    }
+  },
+  "scripts": {
+    "clean": "node clean.js",
+    "start": "parcel \"./src/*.html\"",
+    "build": "parcel build \"./src/*.html\"",
+    "buildjs": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilpgedit/gilpgedit.github.io.git"
+  },
+  "keywords": [],
+  "author": "Gilberto Pacheco Gallegos",
+  "license": "Apache License Version 2.0",
+  "devDependencies": {
+    "@parcel/transformer-webmanifest": "^2.16.3",
+    "parcel": "^2.16.3"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.10.0",
+    "@codemirror/view": "^6.39.2"
+  }
+}

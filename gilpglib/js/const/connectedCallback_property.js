@@ -1,0 +1,1 @@
+export const connectedCallback_property = "connectedCallback"

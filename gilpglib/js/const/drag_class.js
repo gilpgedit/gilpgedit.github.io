@@ -1,0 +1,1 @@
+export const drag_class = "drag"

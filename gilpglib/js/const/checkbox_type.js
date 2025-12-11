@@ -1,0 +1,1 @@
+export const checkbox_type = "checkbox"

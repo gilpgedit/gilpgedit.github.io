@@ -1,0 +1,161 @@
+html {
+  color-scheme: light dark;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100svh;
+  font-family: sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  iframe {
+    background-color: #000;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  iframe {
+    background-color: #fff;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  flex-direction: column;
+  align-content: stretch;
+  width: 100vw;
+  height: 100svh;
+  margin: 0;
+  display: flex;
+}
+
+body > header {
+  left: env(titlebar-area-x, 0);
+  top: env(titlebar-area-y, 0);
+  height: env(titlebar-area-height, 2rem);
+  width: env(titlebar-area-width, 100%);
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+}
+
+body > header h1 {
+  -webkit-app-region: drag;
+  margin: 0;
+  font-size: 1rem;
+}
+
+#windowTitle {
+  -webkit-app-region: drag;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1 1 0;
+  overflow: hidden;
+}
+
+#abrirArchivo {
+  anchor-name: --abrirArchivo;
+}
+
+#archivo {
+  position-anchor: --abrirArchivo;
+  top: 3.5rem;
+  top: anchor(bottom);
+  left: .5rem;
+  left: anchor(left);
+  margin: unset;
+  transition-behavior: allow-discrete;
+  transition-property: overlay, display, transform;
+  transition-duration: 1s;
+  position: absolute;
+  transform: translateY(-50%)scaleY(0);
+}
+
+#archivo:popover-open {
+  transform: translateY(0);
+}
+
+@starting-style {
+  #archivo:popover-open {
+    transform: translateY(-50%)scaleY(0);
+  }
+}
+
+#archivo ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+#archivo ul li {
+  margin-block: 1rem;
+}
+
+.error {
+  color: red;
+}
+
+#lblabrir {
+  cursor: pointer;
+}
+
+#abrir {
+  position: absolute;
+  top: -1000rem;
+}
+
+#content {
+  box-sizing: border-box;
+  flex-grow: 1;
+  align-content: stretch;
+  margin: 0;
+  display: flex;
+}
+
+iframe {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: auto;
+}
+
+#code {
+  box-sizing: border-box;
+  flex-direction: column;
+  flex: 1 1 0;
+  display: flex;
+  overflow: auto;
+}
+
+#consoleSec {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  overflow: auto;
+}
+
+.CodeMirror {
+  box-sizing: border-box;
+  border-bottom: 1px solid #888;
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+.CodeMirror-hints {
+  color: #000;
+  z-index: 1004;
+  box-sizing: border-box;
+  background-color: #e7e7e7;
+  padding: 0;
+  list-style-type: none;
+  position: fixed;
+  overflow: auto;
+}
+
+.CodeMirror-hints li {
+  cursor: default;
+  padding: .2em;
+}
+
+.CodeMirror-hints li:hover {
+  background-color: #cfcfcf;
+}
+/*# sourceMappingURL=gilpgedit.github.io.a594b537.css.map */

@@ -1,0 +1,1 @@
+export const readOnlyField_class = "readOnlyField"

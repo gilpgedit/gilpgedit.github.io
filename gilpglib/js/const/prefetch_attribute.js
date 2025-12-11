@@ -1,0 +1,1 @@
+export const prefetch_attribute = "prefetch"

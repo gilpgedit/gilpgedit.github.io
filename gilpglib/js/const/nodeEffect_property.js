@@ -1,0 +1,1 @@
+export const nodeEffect_property = "nodeEffect"

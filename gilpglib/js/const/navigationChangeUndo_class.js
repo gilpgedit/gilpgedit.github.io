@@ -1,0 +1,1 @@
+export const navigationChangeUndo_class = "navigationChangeUndo"

@@ -1,0 +1,1 @@
+export const name_attribute = "name"

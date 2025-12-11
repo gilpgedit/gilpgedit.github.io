@@ -1,0 +1,1 @@
+export const mimLength_property = "mimLength"

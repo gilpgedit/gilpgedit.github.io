@@ -1,0 +1,1 @@
+export const navigation_class = "navigation"

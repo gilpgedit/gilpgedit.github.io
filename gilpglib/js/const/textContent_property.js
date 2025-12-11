@@ -1,0 +1,1 @@
+export const textContent_property = "textContent"

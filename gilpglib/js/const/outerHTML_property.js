@@ -1,0 +1,1 @@
+export const outerHTML_property = "outerHTML"

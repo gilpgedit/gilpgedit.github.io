@@ -1,0 +1,1 @@
+export const layout_class = "layout"

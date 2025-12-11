@@ -1,0 +1,1 @@
+export const icon_class = "icon"

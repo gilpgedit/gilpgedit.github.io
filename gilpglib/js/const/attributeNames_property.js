@@ -1,0 +1,1 @@
+export const attributeNames_property = "attributeNames"
