@@ -2,15 +2,8 @@
  const cl = console.clear
  const lo = console.log
  const err = console.error
- window.onerror = function (_evt, _src, línea, col, error) {
-  console.error(`[línea: ${línea}, columna: ${col}] `)
-  console.error(error)
- }
  const top = window.top
  if (top) {
-  window.addEventListener('unhandledrejection', event => {
-   top.postMessage({ op: "error", args: [event.reason] }, "*")
-  })
   window.console.clear = function () {
    cl.apply(null, [])
    top.postMessage({ op: "clear", args: [] }, "*")
@@ -33,4 +26,12 @@
    observer.observe(target, config)
   }
  }
+ window.onerror = function (event, _src, línea, col, error) {
+  console.error(`[línea: ${línea}, columna: ${col}] `)
+  console.error(event)
+  console.error(error)
+ }
+ window.addEventListener('unhandledrejection', event => {
+  console.error(event)
+ })
 }

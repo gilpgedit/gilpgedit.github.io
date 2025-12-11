@@ -1,5 +1,5 @@
-import {EditorView, keymap} from "@codemirror/view"
-import {defaultKeymap} from "@codemirror/commands"
+import { defaultKeymap } from "@codemirror/commands"
+import { EditorView, keymap } from "@codemirror/view"
 
 // registraServiceWorker()
 
@@ -22,12 +22,13 @@ const consoleShow = querySelector(document, "#consoleShow")
 const consoleSec = querySelector(document, "#consoleSec")
 const consoleElement = querySelector(document, "pre")
 
-let editor = new EditorView({
-  doc: "hello",
-  extensions: [keymap.of(defaultKeymap)],
-  parent: code,
-});
-
+var editor = new EditorView({
+ extensions: [keymap.of(defaultKeymap)],
+ parent: code,
+})
+// {
+//  const dom = editor.dom
+// }
 // if (window.matchMedia) {
 //  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 //   // @ts-ignore
@@ -195,3 +196,19 @@ onmessage = evt => {
    break
  }
 }
+
+window.onerror = function (
+  /** @type { Event | string} */ event,
+  /** @type {string} */ _src,
+  /** @type {number} */ línea,
+  /** @type {number} */ col,
+  /** @type {Error} */ error
+) {
+ console.error(`[línea: ${línea}, columna: ${col}] `)
+ console.error(event)
+ console.error(error)
+}
+
+window.addEventListener('unhandledrejection', event => {
+ console.error(event)
+})
