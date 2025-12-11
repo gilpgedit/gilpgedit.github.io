@@ -9,6 +9,9 @@
       "distDir": "./docs"
     }
   },
+  "staticFiles": {
+    "staticPath": "static"
+  },
   "scripts": {
     "clean": "node clean.js",
     "start": "parcel \"./src/*.html\"",
@@ -25,10 +28,12 @@
   "license": "Apache License Version 2.0",
   "devDependencies": {
     "@parcel/transformer-webmanifest": "^2.16.3",
-    "parcel": "^2.16.3"
+    "parcel": "^2.16.3",
+    "parcel-reporter-static-files-copy": "^1.5.3"
   },
   "dependencies": {
     "@codemirror/commands": "^6.10.0",
+    "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.39.2"
   }
 }

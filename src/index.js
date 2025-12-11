@@ -26,12 +26,14 @@ var editor = new EditorView({
  extensions: [keymap.of(defaultKeymap)],
  parent: code,
 })
+
+
+
 // {
 //  const dom = editor.dom
 // }
 // if (window.matchMedia) {
 //  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-//   // @ts-ignore
 //   editor = CodeMirror(code, {
 //    mode: "text/html",
 //    theme: "cobalt",
@@ -40,7 +42,6 @@ var editor = new EditorView({
 //    lineNumbers: true
 //   })
 //  } else {
-//   // @ts-ignore
 //   editor = CodeMirror(code, {
 //    mode: "text/html",
 //    extraKeys: { "Ctrl-Space": "autocomplete" },
@@ -49,7 +50,6 @@ var editor = new EditorView({
 //   })
 //  }
 // } else {
-//  // @ts-ignore
 //  editor = CodeMirror(code, {
 //   mode: "text/html",
 //   extraKeys: { "Ctrl-Space": "autocomplete" },
@@ -69,9 +69,13 @@ consolaSecActualiza()
 consoleShow.addEventListener("click", consolaSecActualiza)
 
 const texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
-// editor.setValue(texto)
+setEditorContent(texto)
 guardarActualiza(texto)
-// editor.on("change", contenidoCambia)
+EditorView.updateListener.of(update => {
+  if (update.docChanged) {
+    contenidoCambia()
+  }
+});
 
 function códigoActualiza() {
  code.style.display = codeShow.checked ? '' : 'none'
@@ -90,8 +94,7 @@ function timeout() {
 }
 
 function ejecuta() {
- // @ts-ignore
- const src = editor.getValue().replace(
+ const src = editor.state.doc.toString().replace(
    /* html */`</title>`,
     /* html */ `</title><script src="adapta.js"></script>`
  )
@@ -104,10 +107,10 @@ function archivoAbre() {
  if (selección) {
   const reader = new FileReader()
   reader.onload = () => {
-   // @ts-ignore
    if (typeof reader.result === "string" && editor && guardar) {
     guardar.download = selección.name
-    // editor.setValue(reader.result)
+
+    setEditorContent(reader.result)
     guardarActualiza(reader.result)
    }
   }
@@ -136,14 +139,27 @@ function querySelector(parent, selector) {
  // @ts-ignore
  return element
 }
+/**
+ * @param {string} newContent
+ */
+function setEditorContent(newContent) {
+ editor.dispatch({
+  changes: {
+   from: 0,
+   to: editor.state.doc.length, // Reemplaza todo el contenido existente
+   insert: newContent // Inserta el nuevo contenido
+  }
+ })
+}
 function contenidoCambia() {
- // @ts-ignore
- const texto = editor.getValue()
+ const texto = editor.state.doc.toString()
  location.hash = encodeURIComponent(texto)
  guardarActualiza(texto)
 }
 
-/** @param {string} texto */
+/**
+ * @param {string} texto
+ */
 function guardarActualiza(texto) {
  if (guardar) {
   guardar.href =
