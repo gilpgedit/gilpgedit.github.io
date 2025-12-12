@@ -4,18 +4,13 @@
   "description": "Editor simplificado para trabajar con html y JavaScript.",
   "type": "module",
   "private": true,
-  "targets": {
-    "default": {
-      "distDir": "./docs"
-    }
-  },
   "staticFiles": {
     "staticPath": "static"
   },
   "scripts": {
     "clean": "node clean.js",
-    "start": "parcel \"./src/*.html\"",
-    "build": "parcel build \"./src/*.html\"",
+    "start": "parcel \"./src/*.html\" --dist-dir ./docs",
+    "build": "parcel build \"./src/*.html\" --dist-dir ./docs",
     "buildjs": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,7 +28,15 @@
   },
   "dependencies": {
     "@codemirror/commands": "^6.10.0",
+    "@codemirror/lang-html": "^6.4.11",
+    "@codemirror/search": "^6.5.11",
     "@codemirror/state": "^6.5.2",
-    "@codemirror/view": "^6.39.2"
+    "@codemirror/view": "^6.39.2",
+    "cm6-theme-basic-dark": "^0.2.0",
+    "cm6-theme-basic-light": "^0.2.0",
+    "cm6-theme-gruvbox-dark": "^0.2.0",
+    "cm6-theme-gruvbox-light": "^0.2.0",
+    "cm6-theme-solarized-dark": "^0.2.0",
+    "cm6-theme-solarized-light": "^0.2.0"
   }
 }

@@ -1,6 +1,41 @@
-import { defaultKeymap } from "@codemirror/commands"
-import { EditorView, keymap } from "@codemirror/view"
-
+import {
+ autocompletion,
+ closeBrackets,
+ closeBracketsKeymap,
+ completionKeymap
+} from "@codemirror/autocomplete"
+import {
+ defaultKeymap, history, historyKeymap,
+ indentWithTab
+} from "@codemirror/commands"
+import { html } from "@codemirror/lang-html"
+import {
+ bracketMatching,
+ defaultHighlightStyle,
+ foldGutter, foldKeymap,
+ indentOnInput,
+ syntaxHighlighting
+} from "@codemirror/language"
+import { lintKeymap } from "@codemirror/lint"
+import {
+ highlightSelectionMatches,
+ searchKeymap
+} from "@codemirror/search"
+import { EditorState } from "@codemirror/state"
+import {
+ crosshairCursor,
+ drawSelection,
+ dropCursor,
+ EditorView,
+ highlightActiveLine,
+ highlightActiveLineGutter,
+ highlightSpecialChars,
+ keymap,
+ lineNumbers,
+ rectangularSelection
+} from "@codemirror/view"
+import { basicLight } from "cm6-theme-basic-light"
+import { gruvboxDark } from "cm6-theme-gruvbox-dark"
 // registraServiceWorker()
 
 /** @type {HTMLInputElement} */
@@ -22,45 +57,78 @@ const consoleShow = querySelector(document, "#consoleShow")
 const consoleSec = querySelector(document, "#consoleSec")
 const consoleElement = querySelector(document, "pre")
 
+const darkModePreference = matchMedia('(prefers-color-scheme: dark)')
+darkModePreference.addEventListener("change", () => location.reload())
+
+const texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
+
 var editor = new EditorView({
- extensions: [keymap.of(defaultKeymap)],
+ doc: texto,
  parent: code,
+ extensions: [
+  darkModePreference.matches ? gruvboxDark : basicLight,
+  // A line number gutter
+  lineNumbers(),
+  // A gutter with code folding markers
+  foldGutter(),
+  // Replace non-printable characters with placeholders
+  highlightSpecialChars(),
+  // The undo history
+  history(),
+  // Replace native cursor/selection with our own
+  drawSelection(),
+  // Show a drop cursor when dragging over the editor
+  dropCursor(),
+  // Allow multiple cursors/selections
+  EditorState.allowMultipleSelections.of(true),
+  // Re-indent lines when typing specific input
+  indentOnInput(),
+  // Highlight syntax with a default style
+  syntaxHighlighting(defaultHighlightStyle),
+  // Highlight matching brackets near cursor
+  bracketMatching(),
+  // Automatically close brackets
+  closeBrackets(),
+  // Load the autocompletion system
+  autocompletion(),
+  // Allow alt-drag to select rectangular regions
+  rectangularSelection(),
+  // Change the cursor to a crosshair when holding alt
+  crosshairCursor(),
+  // Style the current line specially
+  highlightActiveLine(),
+  // Style the gutter for current line specially
+  highlightActiveLineGutter(),
+  // Highlight text that matches the selected text
+  highlightSelectionMatches(),
+  keymap.of([
+   indentWithTab,
+   // Closed-brackets aware backspace
+   ...closeBracketsKeymap,
+   // A large set of basic bindings
+   ...defaultKeymap,
+   // Search-related keys
+   ...searchKeymap,
+   // Redo/undo keys
+   ...historyKeymap,
+   // Code folding bindings
+   ...foldKeymap,
+   // Autocompletion keys
+   ...completionKeymap,
+   // Keys related to the linter system
+   ...lintKeymap
+  ]),
+  EditorView.updateListener.of(update => {
+   if (update.docChanged) {
+    contenidoCambia()
+   }
+  }),
+  html(),
+ ],
 })
 
-
-
-// {
-//  const dom = editor.dom
-// }
-// if (window.matchMedia) {
-//  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-//   editor = CodeMirror(code, {
-//    mode: "text/html",
-//    theme: "cobalt",
-//    extraKeys: { "Ctrl-Space": "autocomplete" },
-//    tabSize: 1,
-//    lineNumbers: true
-//   })
-//  } else {
-//   editor = CodeMirror(code, {
-//    mode: "text/html",
-//    extraKeys: { "Ctrl-Space": "autocomplete" },
-//    tabSize: 1,
-//    lineNumbers: true
-//   })
-//  }
-// } else {
-//  editor = CodeMirror(code, {
-//   mode: "text/html",
-//   extraKeys: { "Ctrl-Space": "autocomplete" },
-//   tabSize: 1,
-//   lineNumbers: true
-//  })
-// }
-
-
 abrir.addEventListener("change", archivoAbre)
-ejecutar.addEventListener("click", timeout)
+ejecutar.addEventListener("click", ejecuta)
 códigoActualiza()
 codeShow.addEventListener("click", códigoActualiza)
 ventanaSecActualiza()
@@ -68,14 +136,7 @@ windowShow.addEventListener("click", ventanaSecActualiza)
 consolaSecActualiza()
 consoleShow.addEventListener("click", consolaSecActualiza)
 
-const texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
-setEditorContent(texto)
 guardarActualiza(texto)
-EditorView.updateListener.of(update => {
-  if (update.docChanged) {
-    contenidoCambia()
-  }
-});
 
 function códigoActualiza() {
  code.style.display = codeShow.checked ? '' : 'none'
@@ -87,10 +148,6 @@ function ventanaSecActualiza() {
 
 function consolaSecActualiza() {
  consoleSec.style.display = consoleShow.checked ? '' : 'none'
-}
-
-function timeout() {
- setTimeout(ejecuta, 100)
 }
 
 function ejecuta() {

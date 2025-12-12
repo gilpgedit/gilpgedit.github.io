@@ -3,8 +3,9 @@ import { directoryRemove } from "./gilpglib/js/node/directoryRemove.js"
 
 directoryRemove("docs")
  .then(async () => {
+  await directoryRemove("dist")
   await directoryRemove(".parcel-cache")
-  const npx = exec('npx parcel build "./src/*.html"')
+  const npx = exec('npx parcel build "./src/*.html" --dist-dir ./docs')
   if (npx.stdout) {
    npx.stdout.on('data', data => process.stdout.write(data))
   }
