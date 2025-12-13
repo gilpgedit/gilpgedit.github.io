@@ -7,15 +7,59 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
- iframe {
-  background-color: black;
+
+ html {
+  --autocomplete-background-color: #515151;
+  --match-color: cyan;
+  --autocomplete-color: white;
+  --selection-background-color: #028e8e;
  }
+
 }
 
 @media (prefers-color-scheme: light) {
- iframe {
-  background-color: white;
+
+ html {
+  --autocomplete-background-color: #ece6d9;
+  --match-color: #028e8e;
+  --selection-background-color: rgb(153, 255, 255);
+  --autocomplete-color: black;
  }
+
+ .cm-editor {
+  background-color: white !important;
+ }
+
+ .cm-editor.ͼ1n .cm-gutters {
+  background-color: var(--autocomplete-background-color) !important;
+ }
+
+}
+
+.cm-editor ::selection {
+ background-color: var(--selection-background-color) !important;
+}
+
+/* Style the entire autocomplete dropdown background and border */
+.cm-tooltip-autocomplete {
+ background-color: var(--autocomplete-background-color) !important;
+ color: var(--autocomplete-color) !important;
+}
+
+/* Style individual items (default state) */
+.cm-completion {
+ padding: 2px 8px;
+}
+
+/* Style the *selected* (active) item */
+.cm-completion.cm-active {
+ color: var(--autocomplete-color) !important;
+}
+
+/* Style the matching text within the item */
+.cm-completionMatchedText {
+ font-weight: bold;
+ color: var(--match-color);
 }
 
 body {
@@ -29,12 +73,11 @@ body {
 }
 
 body>header {
- /* position: fixed; */
  display: flex;
  gap: 0.5rem;
  align-items: center;
- left: env(titlebar-area-x, 0);
- top: env(titlebar-area-y, 0);
+ margin-left: env(titlebar-area-x, 0);
+ margin-top: env(titlebar-area-y, 0);
  height: env(titlebar-area-height, 2rem);
  width: env(titlebar-area-width, 100%);
 }
@@ -144,24 +187,4 @@ iframe {
  flex-grow: 1;
  box-sizing: border-box;
  font-size: 1rem;
-}
-
-.CodeMirror-hints {
- position: fixed;
- list-style-type: none;
- background-color: #e7e7e7;
- color: black;
- padding: 0;
- overflow: auto;
- z-index: 1004;
- box-sizing: border-box;
-}
-
-.CodeMirror-hints li {
- padding: 0.2em;
- cursor: default;
-}
-
-.CodeMirror-hints li:hover {
- background-color: #cfcfcf;
 }

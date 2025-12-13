@@ -14,6 +14,7 @@ import {
  defaultHighlightStyle,
  foldGutter, foldKeymap,
  indentOnInput,
+ indentUnit,
  syntaxHighlighting
 } from "@codemirror/language"
 import { lintKeymap } from "@codemirror/lint"
@@ -24,7 +25,6 @@ import {
 import { EditorState } from "@codemirror/state"
 import {
  crosshairCursor,
- drawSelection,
  dropCursor,
  EditorView,
  highlightActiveLine,
@@ -34,9 +34,10 @@ import {
  lineNumbers,
  rectangularSelection
 } from "@codemirror/view"
-import { basicLight } from "cm6-theme-basic-light"
 import { gruvboxDark } from "cm6-theme-gruvbox-dark"
-// registraServiceWorker()
+import { gruvboxLight } from "cm6-theme-gruvbox-light"
+
+registraServiceWorker()
 
 /** @type {HTMLInputElement} */
 const abrir = querySelector(document, "#abrir")
@@ -60,23 +61,32 @@ const consoleElement = querySelector(document, "pre")
 const darkModePreference = matchMedia('(prefers-color-scheme: dark)')
 darkModePreference.addEventListener("change", () => location.reload())
 
-const texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
+let texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
+if (texto.includes("&")) {
+ const parts = texto.split("&")
+ codeShow.checked = parts[0] === "1"
+ windowShow.checked = parts[1] === "1"
+ consoleShow.checked = parts[2] === "1"
+ texto = parts[3] || ""
+}
 
 var editor = new EditorView({
  doc: texto,
  parent: code,
  extensions: [
-  darkModePreference.matches ? gruvboxDark : basicLight,
+  darkModePreference.matches ? gruvboxDark : gruvboxLight,
   // A line number gutter
   lineNumbers(),
   // A gutter with code folding markers
   foldGutter(),
+  EditorState.tabSize.of(1),
+  // Sets the string used for indentation to 2 spaces
+  indentUnit.of(" "),
+
   // Replace non-printable characters with placeholders
   highlightSpecialChars(),
   // The undo history
   history(),
-  // Replace native cursor/selection with our own
-  drawSelection(),
   // Show a drop cursor when dragging over the editor
   dropCursor(),
   // Allow multiple cursors/selections
@@ -138,16 +148,24 @@ consoleShow.addEventListener("click", consolaSecActualiza)
 
 guardarActualiza(texto)
 
+if (!codeShow.checked && windowShow.checked && !consoleShow.checked) {
+ ejecuta()
+}
+
+
 function códigoActualiza() {
  code.style.display = codeShow.checked ? '' : 'none'
+ contenidoCambia()
 }
 
 function ventanaSecActualiza() {
  iframe.style.display = windowShow.checked ? '' : 'none'
+ contenidoCambia()
 }
 
 function consolaSecActualiza() {
  consoleSec.style.display = consoleShow.checked ? '' : 'none'
+ contenidoCambia()
 }
 
 function ejecuta() {
@@ -209,8 +227,11 @@ function setEditorContent(newContent) {
  })
 }
 function contenidoCambia() {
- const texto = editor.state.doc.toString()
- location.hash = encodeURIComponent(texto)
+ const texto = encodeURIComponent(editor.state.doc.toString())
+ const s = codeShow.checked ? "1" : "0"
+ const w = windowShow.checked ? "1" : "0"
+ const c = consoleShow.checked ? "1" : "0"
+ location.hash = `${s}&${w}&${c}&${texto}`
  guardarActualiza(texto)
 }
 
@@ -230,17 +251,20 @@ function errorMuestra(e) {
  alert(e.message)
 }
 
-// async function registraServiceWorker() {
-//  try {
-//   if (navigator.serviceWorker) {
-//    const registro = await navigator.serviceWorker.register("sw.js");
-//    console.log("Service Worker registrado.");
-//    console.log(registro);
-//   }
-//  } catch (e) {
-//   errorMuestra(e);
-//  }
-// }
+async function registraServiceWorker() {
+ try {
+  if (navigator.serviceWorker) {
+   const registro = await navigator.serviceWorker.register(
+    new URL('sw.js', import.meta.url),
+    { type: 'module' }
+   )
+   console.log("Service Worker registrado.")
+   console.log(registro)
+  }
+ } catch (e) {
+  errorMuestra(e)
+ }
+}
 
 onmessage = evt => {
  const { op, args } = evt.data

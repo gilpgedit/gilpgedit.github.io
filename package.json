@@ -22,6 +22,7 @@
   "author": "Gilberto Pacheco Gallegos",
   "license": "Apache License Version 2.0",
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.16.3",
     "@parcel/transformer-webmanifest": "^2.16.3",
     "parcel": "^2.16.3",
     "parcel-reporter-static-files-copy": "^1.5.3"
@@ -32,6 +33,7 @@
     "@codemirror/search": "^6.5.11",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.39.2",
+    "@parcel/service-worker": "^2.16.3",
     "cm6-theme-basic-dark": "^0.2.0",
     "cm6-theme-basic-light": "^0.2.0",
     "cm6-theme-gruvbox-dark": "^0.2.0",
