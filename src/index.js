@@ -267,7 +267,7 @@ async function registraServiceWorker() {
  try {
   if (navigator.serviceWorker) {
    const registro = await navigator.serviceWorker.register(
-    new URL('./sw.js', import.meta.url),
+    new URL('./sw.js'),
     { type: 'module' }
    )
    console.log("Service Worker registrado.")
