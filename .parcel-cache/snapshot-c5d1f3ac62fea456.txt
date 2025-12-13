@@ -169,7 +169,7 @@
 82D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\semver\classes\index.js134100531471504518 0
 97D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\cjs\_array_with_holes.cjs134100531450222883 0
 77D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\html\consumeJson.js133740812425850424 0
-55D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\sw.js134100909687367921 0
+55D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\sw.js134101040523459916 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\BF.js134100531481692121 0
 76D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lmdb\node_modules134100531420996960 1
 63D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\img\80x15.png134094357184997165 0
