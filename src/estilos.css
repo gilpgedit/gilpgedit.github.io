@@ -10,8 +10,10 @@ html {
 
  html {
   --autocomplete-background-color: #515151;
-  --match-color: cyan;
   --autocomplete-color: white;
+  --autocomplete-active-background-color: blue;
+  --autocomplete-active-color: white;
+  --match-color: cyan;
   --selection-background-color: #028e8e;
  }
 
@@ -21,9 +23,11 @@ html {
 
  html {
   --autocomplete-background-color: #ece6d9;
+  --autocomplete-color: black;
+  --autocomplete-active-background-color: cyan;
+  --autocomplete-active-color: black;
   --match-color: #028e8e;
   --selection-background-color: rgb(153, 255, 255);
-  --autocomplete-color: black;
  }
 
  .cm-editor {
@@ -40,20 +44,21 @@ html {
  background-color: var(--selection-background-color) !important;
 }
 
-/* Style the entire autocomplete dropdown background and border */
+/* autocomplete dropdown completo */
 .cm-tooltip-autocomplete {
  background-color: var(--autocomplete-background-color) !important;
  color: var(--autocomplete-color) !important;
 }
 
-/* Style individual items (default state) */
-.cm-completion {
- padding: 2px 8px;
+.cm-tooltip-autocomplete ul li {
+ padding: 8px 8px !important;
 }
 
-/* Style the *selected* (active) item */
-.cm-completion.cm-active {
+.cm-tooltip-autocomplete ul li[aria-selected] {
  color: var(--autocomplete-color) !important;
+ background-color: var(--autocomplete-active-background-color) !important;
+ color: var(--autocomplete-active-color) !important;
+ border: 1px solid var(--autocomplete-active-background-color);
 }
 
 /* Style the matching text within the item */
