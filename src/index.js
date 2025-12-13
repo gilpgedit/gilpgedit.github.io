@@ -139,14 +139,16 @@ var editor = new EditorView({
 
 abrir.addEventListener("change", archivoAbre)
 ejecutar.addEventListener("click", ejecuta)
-códigoActualiza()
 codeShow.addEventListener("click", códigoActualiza)
 ventanaSecActualiza()
 windowShow.addEventListener("click", ventanaSecActualiza)
 consolaSecActualiza()
 consoleShow.addEventListener("click", consolaSecActualiza)
 
-guardarActualiza(texto)
+ codigoDisplay()
+ ventanaDisplay()
+ consolaDisplay()
+ contenidoCambia()
 
 if (!codeShow.checked && windowShow.checked && !consoleShow.checked) {
  ejecuta()
@@ -154,18 +156,30 @@ if (!codeShow.checked && windowShow.checked && !consoleShow.checked) {
 
 
 function códigoActualiza() {
- code.style.display = codeShow.checked ? '' : 'none'
+ codigoDisplay()
  contenidoCambia()
+}
+
+function codigoDisplay() {
+ code.style.display = codeShow.checked ? '' : 'none'
 }
 
 function ventanaSecActualiza() {
- iframe.style.display = windowShow.checked ? '' : 'none'
+ ventanaDisplay()
  contenidoCambia()
 }
 
+function ventanaDisplay() {
+ iframe.style.display = windowShow.checked ? '' : 'none'
+}
+
 function consolaSecActualiza() {
- consoleSec.style.display = consoleShow.checked ? '' : 'none'
+ consolaDisplay()
  contenidoCambia()
+}
+
+function consolaDisplay() {
+ consoleSec.style.display = consoleShow.checked ? '' : 'none'
 }
 
 function ejecuta() {
@@ -239,10 +253,8 @@ function contenidoCambia() {
  * @param {string} texto
  */
 function guardarActualiza(texto) {
- if (guardar) {
   guardar.href =
    URL.createObjectURL(new Blob([texto], { type: "text/html" }))
- }
 }
 
 /** @param {DOMException} e */
