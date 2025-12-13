@@ -13,28 +13,28 @@
  "screenshots": [
   {
    "src": "img/screenshot_light_wide.png",
-   "sizes": "984x488",
+   "sizes": "1083x541",
    "type": "image/png",
    "form_factor": "wide",
    "label": "Vista horizontal, modo claro."
   },
   {
    "src": "img/screenshot_dark_wide.png",
-   "sizes": "1094x529",
+   "sizes": "1083x541",
    "type": "image/png",
    "form_factor": "wide",
    "label": "Vista horizontal, modo oscuro, todos los páneles."
   },
   {
    "src": "img/screenshot_light_narrow.png",
-   "sizes": "552x808",
+   "sizes": "555x738",
    "type": "image/png",
    "form_factor": "narrow",
    "label": "Vista vertical, modo claro."
   },
   {
    "src": "img/screenshot_dark_narrow.png",
-   "sizes": "554x816",
+   "sizes": "555x738",
    "type": "image/png",
    "form_factor": "narrow",
    "label": "Vista vertical, modo oscuro, menú 'Archivo'."

@@ -266,8 +266,12 @@ function errorMuestra(e) {
 async function registraServiceWorker() {
  try {
   if (navigator.serviceWorker) {
+   // const registro = await navigator.serviceWorker.register(
+   //  new URL('sw.js', import.meta.url),
+   //  { type: 'module' }
+   // )
    const registro = await navigator.serviceWorker.register(
-    new URL('./sw.js', "https://gilpgedit.github.io/"),
+    new URL('sw.js', "https://gilpgedit.github.io/"),
     { type: 'module' }
    )
    console.log("Service Worker registrado.")
