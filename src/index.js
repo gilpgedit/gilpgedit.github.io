@@ -267,7 +267,7 @@ async function registraServiceWorker() {
  try {
   if (navigator.serviceWorker) {
    const registro = await navigator.serviceWorker.register(
-    new URL('./sw.js'),
+    new URL('./sw.js', "https://gilpgedit.github.io/"),
     { type: 'module' }
    )
    console.log("Service Worker registrado.")
