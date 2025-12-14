@@ -1,4 +1,4 @@
-4649
+4672
 79D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\weak-lru-cache\tests134100531453120388 1
 79D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\json5\lib\require.js134100531460386766 0
 112D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\css-hanging-punctuation.js134100531491017366 0
@@ -38,7 +38,7 @@
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\CM.js134100531484702170 0
 77D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\picomatch\index.js134100531439791038 0
 88D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\profiler\lib\types.js134100531468983225 0
-50D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs134101036902136516 1
+50D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs134101446481289794 1
 104D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\media-fragments.js134100531506039010 0
 98D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\utility-types\dist\utility-types.js.map134100531466790733 0
 88D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features.js134100531498017813 0
@@ -83,6 +83,7 @@
 91D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\semver\internal\parse-options.js134100531477540524 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\transformer-webmanifest134100531443831521 1
 80D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\cm6-theme-basic-light134100541517570418 1
+73D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\icono2048.54631aa9.png134101430241399450 0
 112D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\background-position-x-y.js134100531480402142 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@lezer\highlight\dist\index.cjs134100531438204970 0
 110D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mdb_drop.1134100531473655812 0
@@ -119,7 +120,7 @@
 108D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\ordered-binary\.nyc_output\processinfo\index.json134100531463601691 0
 127D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\node-gyp-build-optional-packages\node_modules\detect-libc\index.d.ts134100531459278522 0
 91D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\cm6-theme-gruvbox-dark\README.md134100548795399169 0
-61D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\estilos.css134100825423818619 0
+61D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\estilos.css134101430235157257 0
 72D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\types134100531442403928 1
 100D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\import-maps.js134100531502159721 0
 80D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\counter\index.js134100531434054952 0
@@ -146,7 +147,7 @@
 69D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\lite\pre.js133858764905772100 0
 63D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc134100839584665857 1
 79D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\safe-buffer\index.js134100531435454948 0
-58D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\index.js134101036746409880 0
+58D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\index.js134101432847992342 0
 109D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\intro.doc134100531484722162 0
 85D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lightningcss\node\index.js134100531467872646 0
 93D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\core-win32-x64-msvc\README.md134100531434184975 0
@@ -169,7 +170,7 @@
 82D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\semver\classes\index.js134100531471504518 0
 97D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\cjs\_array_with_holes.cjs134100531450222883 0
 77D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\html\consumeJson.js133740812425850424 0
-55D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\sw.js134101040523459916 0
+55D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\sw.js134101446330007802 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\BF.js134100531481692121 0
 76D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lmdb\node_modules134100531420996960 1
 63D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\img\80x15.png134094357184997165 0
@@ -267,6 +268,7 @@
 105D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\wasm-multi-value.js134100531513600040 0
 113D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\workers\test\integration\workerfarm\ipc-pid.js134100531473616160 0
 66D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@marijn134100531419702120 1
+84D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_dark_wide.73d2aae4.png134101430241841369 0
 73D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\style-mod\dist134100531438744956 1
 79D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\crelt\dist\index.cjs134100531436454974 0
 100D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\types-internal\src\SemverRange.js134100531469335918 0
@@ -2238,6 +2240,7 @@
 102D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\selection-api.js134100531509860175 0
 83D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\packager-raw-url134100812121274946 1
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\VC.js134100531513022810 0
+87D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.5e4b0bb4.css.map134101446481269811 0
 93D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\packager-wasm\package.json134100531456843726 0
 105D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\meta-theme-color.js134100531506158965 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\VI.js134100531513221524 0
@@ -2406,6 +2409,7 @@
 102D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\vector-effect.js134100531513171323 0
 110D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\css-media-interaction.js134100531491982154 0
 88D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\src\_dispose.mjs134100531498667354 0
+82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.9421d019.js134101430241881020 0
 98D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\svg-html5.js134100531511307913 0
 105D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\css-mixblendmode.js134100531492152100 0
 95D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\html\validateNumberWithConstraints.js134013421671443913 0
@@ -3123,6 +3127,7 @@
 110D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\esm\_class_private_field_loose_base.js134100531484892153 0
 106D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\esm\_class_private_field_update.js134100531485002195 0
 104D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\esm\_class_private_method_get.js134100531485042139 0
+82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x384.1d49183b.png134101430241841369 0
 104D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\helpers\esm\_class_private_method_set.js134100531485112126 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@lezer\html\src\parser.terms.js134100531465539363 0
 131D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\source-map\parcel_sourcemap_node\artifacts\index.darwin-x64.node134100531478890447 0
@@ -3881,7 +3886,7 @@
 91D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\fs\src\NodeFS.browser.js134100531463621851 0
 89D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\core\src\Dependency.js134100531481942159 0
 87D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@lezer\css\test\selector.txt134100531471285583 0
-60D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\sw.js.map134101036378191942 0
+60D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\sw.js.map134101430241881020 0
 86D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\fs\src\OverlayFS.js134100531468115331 0
 84D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\fs\lib\browser.js134100531439014957 0
 82D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\fs\lib\index.js134100531455403108 0
@@ -4531,7 +4536,7 @@
 96D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\firebase\validateUniqueSetFunctions.js133809292108047895 0
 72D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\di\appTitle.js133798215830290778 0
 74D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\di\changesNew.js133920671299513328 0
-61D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\index.html134101036901606505 0
+61D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\index.html134101446481075878 0
 75D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\di\computedNew.js133798239389538260 0
 71D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\di\dateNew.js133996558836630531 0
 65D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\js\di\html134098647823135183 1
@@ -4635,16 +4640,34 @@
 115D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\font\MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].codepoints133585629228584889 0
 110D:\gilpg\Documents\Sitios\gilpgedit.github.io\gilpglib\font\MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2133585629797250729 0
 69D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\80x15.76fdda20.png134101036368974216 0
+69D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\80x15.80410d7b.png134101430241841369 0
 60D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\adapta.js134099341634343102 0
+71D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\favicon.543c5379.ico134101430241821181 0
 71D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\favicon.6d1b1f54.ico134101036362800691 0
+83D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.0e9d26ab.css134101430241881020 0
+87D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.0e9d26ab.css.map134101430242166671 0
+83D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.5e4b0bb4.css134101446481075878 0
 82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.6beaa405.js134101036901706434 0
 86D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.6beaa405.js.map134101036902116476 0
+86D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.9421d019.js.map134101430242166671 0
 83D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.bde78671.css134101036377881986 0
 82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\gilpgedit.github.io.fdd300aa.js134101036377881986 0
+73D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\icono1024.0ba3cb3f.png134101430241841369 0
 73D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\icono1024.f63a5ada.png134101036368964198 0
+72D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\icono256.37f0de5a.png134101430241399450 0
+77D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon.886c5c73.png134101430241881020 0
+82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x128.b2ccdef3.png134101430241841369 0
+82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x192.71c75c2b.png134101430241399450 0
+81D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x48.9acf5069.png134101430241399450 0
+82D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x512.1611a3ac.png134101430241513275 0
 81D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x72.1e6f161e.png134101036368964198 0
+81D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x72.9299991f.png134101430241841369 0
+81D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\maskable_icon_x96.ebce42e1.png134101430241542848 0
+86D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_dark_narrow.e7351ac0.png134101430241800983 0
 84D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_dark_wide.e5c46af6.png134101036363099073 0
+87D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_light_narrow.51893b3f.png134101430241841369 0
 87D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_light_narrow.e8bb9706.png134101036368974216 0
+85D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_light_wide.620019b7.png134101430241841369 0
 85D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\screenshot_light_wide.6e698661.png134101036368974216 0
-67D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\site.webmanifest134101036377872003 0
-56D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\sw.js134101036377881986 0
+67D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\site.webmanifest134101430241881020 0
+56D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\sw.js134101430241773045 0
