@@ -1,4 +1,4 @@
-import { asyncErrorDisplay } from "#gilpgcore/asyncErrorDisplay.js"
+import { asyncErrorDisplay } from "../gilpgcore/asyncErrorDisplay.js"
 import { errorText } from "../gilpgcore/i18n/text/errorText.js"
 
 /**

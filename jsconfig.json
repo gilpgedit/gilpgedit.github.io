@@ -10,5 +10,6 @@
    "WebWorker",
    "DOM"
   ]
- }
+ },
+  "exclude": ["node_modules", "docs"]
 }

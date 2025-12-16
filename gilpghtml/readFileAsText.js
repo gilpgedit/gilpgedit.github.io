@@ -1,4 +1,4 @@
-import { promiseNew } from "#gilpgcore/promiseNew.js"
+import { promiseNew } from "../gilpgcore/promiseNew.js"
 import {
  fileReadNotTextTemplate
 } from "./i18n/template/fileReadNotTextTemplate.js"

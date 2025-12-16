@@ -1,12 +1,16 @@
-<!DOCTYPE html><html lang=es><script type=importmap>{"imports":{"5VnLw":"/sw.js"}}</script><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>GilPG Edit</title><meta name=description content="Desarrolla y depura páginas sencillas en línea."><link rel=icon sizes=32x32 href=/favicon.6d1b1f54.ico><meta name=theme-color content=#000000><link rel=manifest href=/site.webmanifest><link rel=stylesheet href=/gilpgedit.github.io.5e4b0bb4.css><body>
+<!DOCTYPE html><html lang=es><script type=importmap>{"imports":{"5VnLw":"/sw.js"}}</script><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>GilPG Edit</title><meta name=description content="Desarrolla y depura páginas sencillas en línea."><link rel=icon sizes=32x32 href=/favicon.6d1b1f54.ico><meta name=theme-color content=#000000><link rel=manifest href=/site.webmanifest><link rel=stylesheet href=/gilpgedit.github.io.54d971bc.css><body>
+
  <header>
+  <h1>
+   <img src=/maskable_icon_x48.e5f7e5e1.png alt="GilPG Edit">
+  </h1>
   <button id=abrirArchivo type=button popovertarget=archivo aria-label="Abrir archivo">
    Archivo
   </button>
   <output id=windowTitle>-</output>
-  <h1>GilPG Edit</h1>
   <button id=ejecutar type=button>Ejecutar</button>
  </header>
+
  <section id=archivo popover=auto>
   <ul>
    <li>
@@ -41,11 +45,31 @@
      </p>
     </fieldset>
    </li>
+   <li>
+    <button type=button onclick="if (!aboutDialog.open) aboutDialog.showModal()">
+     Acerca de GilPG Edit
+    </button>
+   </li>
   </ul>
-  <footer>
+ </section>
+
+ <section id=content>
+  <section id=code hidden>
+   <small>Código fuente</small>
+  </section>
+  <iframe title=Ventana hidden></iframe>
+  <section id=consoleSec hidden>
+   <small>Consola</small>
+   <pre></pre>
+  </section>
+
+  <dialog id=aboutDialog>
+   <h2>Acerca de GilPG Edit</h2>
+   <p>Versión 3.1</p>
+   <p>Desarrolla y depura páginas sencillas en línea.</p>
    <h3>Licencia</h3>
    <p>
-    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt="Licencia Creative Commons" style=border-width:0 src=/80x15.76fdda20.png></a>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt="Licencia Creative Commons" style=border-width:0 src=/80x15.76fdda20.png></a><br>
     Esta
     <span xmlns:dct=http://purl.org/dc/terms/ href=http://purl.org/dc/dcmitype/InteractiveResource rel=dct:type>obra</span>
     de
@@ -55,30 +79,19 @@
      Creative Commons Atribución 4.0 Internacional</a>.
    </p>
    <h3>Licencias de terceros</h3>
-   <ul>
-    <li>
-     <a href=https://codemirror.net/ target=_blank rel="noopener noreferrer">CodeMirror</a>
-     distribuido bajo la licencia
-     <a href=https://github.com/codemirror/dev/blob/main/LICENSE target=_blank rel="noopener noreferrer">MIT</a>
-    </li>
-    <li>
-     <a href=https://github.com/craftzdog/cm6-themes target=_blank rel="noopener noreferrer">cm6-themes</a>
-     distribuido bajo la licencia
-     <a href="https://github.com/craftzdog/cm6-themes?tab=MIT-1-ov-file" target=_blank rel="noopener noreferrer">MIT</a>
-    </li>
-   </ul>
-  </footer>
+   <dl>
+    <dt><a href=https://codemirror.net/ target=_blank rel="noopener noreferrer">CodeMirror</a></dt>
+    <dd><a href=https://github.com/codemirror/dev/blob/main/LICENSE target=_blank rel="noopener noreferrer">MIT</a></dd>
+    <dt><a href=https://github.com/craftzdog/cm6-themes target=_blank rel="noopener noreferrer">cm6-themes</a></dt>
+    <dd><a href="https://github.com/craftzdog/cm6-themes?tab=MIT-1-ov-file" target=_blank rel="noopener noreferrer">MIT</a></dd>
+    <dt><a href=https://fonts.google.com/icons target=_blank rel=noopener noreferrer>Material Symbols</a></dt>
+    <dd><a href=https://www.apache.org/licenses/LICENSE-2.0.html target=_blank rel="noopener noreferrer">Apache 2.0</a></dd>
+   </dl>
+   <form method=dialog>
+    <button>Cerrar</button>
+   </form>
+  </dialog>
  </section>
- <section id=content>
-  <label id=code>
-   <small>Código fuente</small>
-  </label>
-  <iframe title=Ventana></iframe>
-  <label id=consoleSec>
-   <small>Consola</small>
-   <pre></pre>
-  </label>
- </section>
- <script type=module src=/gilpgedit.github.io.08042c99.js></script>
+ <script type=module src=/gilpgedit.github.io.7b6eba7a.js></script>
 
 

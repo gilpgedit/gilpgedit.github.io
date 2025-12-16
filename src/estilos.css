@@ -1,4 +1,5 @@
 html {
+ --title-font-size: calc(env(titlebar-area-height, 2rem) - 4px);
  color-scheme: dark light;
  font-family: sans-serif;
  width: 100vw;
@@ -34,37 +35,6 @@ html {
   background-color: white !important;
  }
 
- .cm-editor.ͼ1n .cm-gutters {
-  background-color: var(--autocomplete-background-color) !important;
- }
-
-}
-
-.cm-editor ::selection {
- background-color: var(--selection-background-color) !important;
-}
-
-/* autocomplete dropdown completo */
-.cm-tooltip-autocomplete {
- background-color: var(--autocomplete-background-color) !important;
- color: var(--autocomplete-color) !important;
-}
-
-.cm-tooltip-autocomplete ul li {
- padding: 8px 8px !important;
-}
-
-.cm-tooltip-autocomplete ul li[aria-selected] {
- color: var(--autocomplete-color) !important;
- background-color: var(--autocomplete-active-background-color) !important;
- color: var(--autocomplete-active-color) !important;
- border: 1px solid var(--autocomplete-active-background-color);
-}
-
-/* Style the matching text within the item */
-.cm-completionMatchedText {
- font-weight: bold;
- color: var(--match-color);
 }
 
 body {
@@ -89,13 +59,18 @@ body>header {
 
 body>header h1 {
  -webkit-app-region: drag;
- font-size: 1rem;
  margin: 0;
+ vertical-align: middle;
+}
+
+body>header h1 img {
+ width: var(--title-font-size);
 }
 
 #windowTitle {
  -webkit-app-region: drag;
- flex: 1 1 0;
+ flex: 2 1 0;
+ font-size: var(--title-font-size);
  text-align: center;
  white-space: nowrap;
  text-overflow: ellipsis;
@@ -181,10 +156,18 @@ iframe {
  box-sizing: border-box;
 }
 
+#code[hidden] {
+ display: none;
+}
+
 #consoleSec {
  flex: 1 1 0;
  overflow: auto;
  box-sizing: border-box;
+}
+
+#consoleSec[hidden] {
+ display: none;
 }
 
 #code>:nth-child(2) {
@@ -192,4 +175,48 @@ iframe {
  flex-grow: 1;
  box-sizing: border-box;
  font-size: 1rem;
+}
+
+dialog#aboutDialog {
+ overflow: auto;
+ text-align: center;
+}
+
+dialog#aboutDialog dd {
+ margin: 0;
+}
+
+span.size-titlebar {
+ font-size: var(--title-font-size);
+}
+
+.cm-editor.ͼ1n .cm-gutters {
+ background-color: var(--autocomplete-background-color) !important;
+}
+
+.cm-editor ::selection {
+ background-color: var(--selection-background-color) !important;
+}
+
+/* Autocomplete dropdown */
+.cm-tooltip-autocomplete {
+ background-color: var(--autocomplete-background-color) !important;
+ color: var(--autocomplete-color) !important;
+}
+
+.cm-tooltip-autocomplete ul li {
+ padding: 8px 8px !important;
+}
+
+.cm-tooltip-autocomplete ul li[aria-selected] {
+ color: var(--autocomplete-color) !important;
+ background-color: var(--autocomplete-active-background-color) !important;
+ color: var(--autocomplete-active-color) !important;
+ border: 1px solid var(--autocomplete-active-background-color);
+}
+
+/* Matching text within the item */
+.cm-completionMatchedText {
+ font-weight: bold;
+ color: var(--match-color);
 }

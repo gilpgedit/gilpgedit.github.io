@@ -1,4 +1,4 @@
-import { asyncErrorProcessor } from "#gilpgcore/asyncErrorProcessor.js"
+import { asyncErrorProcessor } from "../gilpgcore/asyncErrorProcessor.js"
 import { workEnd } from "./workEnd.js"
 import { workStart } from "./workStart.js"
 

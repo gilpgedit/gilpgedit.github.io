@@ -1,18 +1,3 @@
-import { provideAsyncErrorProcessor } from "#gilpgcore/asyncErrorProcessor.js"
-import { asyncTryCatch } from "#gilpgcore/asyncTryCatch.js"
-import { provideErrorDisplay } from "#gilpgcore/errorDisplay.js"
-import { provideErrorProcessor } from "#gilpgcore/errorProcessor.js"
-import { tryCatch } from "#gilpgcore/tryCatch.js"
-import {
- asyncErrorProcessorForBasicHtml
-} from "#gilpghtml/asyncErrorProcessorForBasicHtml.js"
-import {
- errorProcessorForBasicHtml
-} from "#gilpghtml/errorProcessorForBasicHtml.js"
-import { querySelector } from "#gilpghtml/querySelector.js"
-import { readFileAsText } from "#gilpghtml/readFileAsText.js"
-import { selectedFiles } from "#gilpghtml/selectedFiles.js"
-import { serviceWorkerRegister } from "#gilpghtml/serviceWorkerRegister.js"
 import {
  autocompletion,
  closeBrackets,
@@ -53,6 +38,21 @@ import { gruvboxDark } from "cm6-theme-gruvbox-dark"
 import { gruvboxLight } from "cm6-theme-gruvbox-light"
 // @ts-ignore
 import adaptText from 'bundle-text:./adapt.js'
+import { provideAsyncErrorProcessor } from "../gilpgcore/asyncErrorProcessor.js"
+import { asyncTryCatch } from "../gilpgcore/asyncTryCatch.js"
+import { provideErrorDisplay } from "../gilpgcore/errorDisplay.js"
+import { provideErrorProcessor } from "../gilpgcore/errorProcessor.js"
+import { tryCatch } from "../gilpgcore/tryCatch.js"
+import {
+ asyncErrorProcessorForBasicHtml
+} from "../gilpghtml/asyncErrorProcessorForBasicHtml.js"
+import {
+ errorProcessorForBasicHtml
+} from "../gilpghtml/errorProcessorForBasicHtml.js"
+import { querySelector } from "../gilpghtml/querySelector.js"
+import { readFileAsText } from "../gilpghtml/readFileAsText.js"
+import { selectedFiles } from "../gilpghtml/selectedFiles.js"
+import { serviceWorkerRegister } from "../gilpghtml/serviceWorkerRegister.js"
 
 tryCatch(
  () => {
@@ -240,7 +240,7 @@ tryCatch(
   }
 
   function codeDisplay() {
-   codeElement.style.display = codeShowElement.checked ? '' : 'none'
+   codeElement.hidden = !codeShowElement.checked
   }
 
   function windowShowUpdate() {
@@ -254,7 +254,7 @@ tryCatch(
   }
 
   function windowDisplay() {
-   iframeElement.style.display = windowShowElement.checked ? '' : 'none'
+   iframeElement.hidden = !windowShowElement.checked
   }
 
   function consoleShowUpdate() {
@@ -268,7 +268,7 @@ tryCatch(
   }
 
   function consoleDisplay() {
-   consoleSecElement.style.display = consoleShowElement.checked ? '' : 'none'
+   consoleSecElement.hidden = !consoleShowElement.checked
   }
 
   /**
