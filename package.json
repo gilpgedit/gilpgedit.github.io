@@ -7,6 +7,11 @@
   "staticFiles": {
     "staticPath": "static"
   },
+  "imports": {
+   "#gilpgcorejs/*": "./gilpgcorejs/*",
+   "#gilpghtml/*": "./gilpghtml/*",
+   "#gilpgwork/*": "./gilpgwork/*"
+  },
   "scripts": {
     "clean": "node clean.js",
     "start": "parcel \"./src/*.html\" --dist-dir ./docs",

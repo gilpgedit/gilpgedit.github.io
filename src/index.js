@@ -145,10 +145,10 @@ windowShow.addEventListener("click", ventanaSecActualiza)
 consolaSecActualiza()
 consoleShow.addEventListener("click", consolaSecActualiza)
 
- codigoDisplay()
- ventanaDisplay()
- consolaDisplay()
- contenidoCambia()
+codigoDisplay()
+ventanaDisplay()
+consolaDisplay()
+contenidoCambia()
 
 if (!codeShow.checked && windowShow.checked && !consoleShow.checked) {
  ejecuta()
@@ -253,8 +253,8 @@ function contenidoCambia() {
  * @param {string} texto
  */
 function guardarActualiza(texto) {
-  guardar.href =
-   URL.createObjectURL(new Blob([texto], { type: "text/html" }))
+ guardar.href =
+  URL.createObjectURL(new Blob([texto], { type: "text/html" }))
 }
 
 /** @param {DOMException} e */
@@ -266,14 +266,12 @@ function errorMuestra(e) {
 async function registraServiceWorker() {
  try {
   if (navigator.serviceWorker) {
+   const registro = await navigator.serviceWorker.register(new URL('./sw.js', import.meta.url), { type: 'module', scope: '/' }
+   )
    // const registro = await navigator.serviceWorker.register(
-   //  new URL('sw.js', import.meta.url),
+   //  new URL('./sw.js', "https://gilpgedit.github.io/"),
    //  { type: 'module' }
    // )
-   const registro = await navigator.serviceWorker.register(
-    new URL('./sw.js', "https://gilpgedit.github.io/"),
-    { type: 'module' }
-   )
    console.log("Service Worker registrado.")
    console.log(registro)
   }
