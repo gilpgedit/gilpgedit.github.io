@@ -8,7 +8,7 @@
     "staticPath": "static"
   },
   "imports": {
-   "#gilpgcorejs/*": "./gilpgcorejs/*",
+   "#gilpgcore/*": "./gilpgcore/*",
    "#gilpghtml/*": "./gilpghtml/*",
    "#gilpgwork/*": "./gilpgwork/*"
   },

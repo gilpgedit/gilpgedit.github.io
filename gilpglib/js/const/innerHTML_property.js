@@ -1,1 +1,0 @@
-export const innerHTML_property = "innerHTML"

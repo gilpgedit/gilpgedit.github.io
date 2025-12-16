@@ -1,1 +1,0 @@
-export const row_class = "row"

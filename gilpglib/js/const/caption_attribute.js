@@ -1,1 +1,0 @@
-export const caption_attribute = "caption"

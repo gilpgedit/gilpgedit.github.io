@@ -1,1 +1,0 @@
-export const iconText_class = "iconText"

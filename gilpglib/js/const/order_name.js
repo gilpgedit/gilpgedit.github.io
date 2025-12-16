@@ -1,1 +1,0 @@
-export const order_name = "o"

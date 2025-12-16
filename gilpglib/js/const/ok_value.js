@@ -1,1 +1,0 @@
-export const ok_value = "ok"

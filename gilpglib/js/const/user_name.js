@@ -1,1 +1,0 @@
-export const user_name = "u"

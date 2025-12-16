@@ -1,1 +1,0 @@
-export const className_property = "className"

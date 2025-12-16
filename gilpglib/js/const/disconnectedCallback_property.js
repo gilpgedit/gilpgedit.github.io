@@ -1,1 +1,0 @@
-export const disconnectedCallback_property = "disconnectedCallback"

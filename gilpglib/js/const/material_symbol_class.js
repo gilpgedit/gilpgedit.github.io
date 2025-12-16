@@ -1,1 +1,0 @@
-export const material_symbol_class = "material-symbol"

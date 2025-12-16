@@ -1,1 +1,0 @@
-export const small_only_class = "small_only"

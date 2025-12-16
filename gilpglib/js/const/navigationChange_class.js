@@ -1,1 +1,0 @@
-export const navigationChange_class = "navigationChange"

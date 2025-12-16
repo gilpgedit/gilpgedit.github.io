@@ -1,1 +1,0 @@
-export const APPLE_IS = /.*(iPad|iPhone|iPod|Mac).*/.test(navigator.userAgent)

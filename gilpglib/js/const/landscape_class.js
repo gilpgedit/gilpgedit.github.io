@@ -1,1 +1,0 @@
-export const landscape_class = "landscape"

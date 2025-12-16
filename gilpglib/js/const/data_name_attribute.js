@@ -1,1 +1,0 @@
-export const data_name_attribute = "data-name"

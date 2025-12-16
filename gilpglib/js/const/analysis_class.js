@@ -1,1 +1,0 @@
-export const analysis_class = "analysis"

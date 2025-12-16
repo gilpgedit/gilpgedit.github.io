@@ -1,1 +1,0 @@
-export const author_class = "author"

@@ -1,1 +1,0 @@
-export const style_property = "style"

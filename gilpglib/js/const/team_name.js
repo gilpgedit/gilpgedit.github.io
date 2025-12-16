@@ -1,1 +1,0 @@
-export const team_name = "t"

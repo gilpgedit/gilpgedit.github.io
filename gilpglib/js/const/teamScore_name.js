@@ -1,1 +1,0 @@
-export const teamScore_name = "ts"

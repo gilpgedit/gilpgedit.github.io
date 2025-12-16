@@ -1,1 +1,0 @@
-export const addMain_name = "addMain"

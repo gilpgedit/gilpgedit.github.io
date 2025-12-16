@@ -1,1 +1,0 @@
-export const weight_name = "w"

@@ -1,1 +1,0 @@
-export const liteNode_property = "liteNode"

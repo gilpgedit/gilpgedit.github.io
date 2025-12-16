@@ -1,1 +1,0 @@
-export const attributeChangedCallback_property = "attributeChangedCallback"

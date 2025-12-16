@@ -1,6 +1,4 @@
-import { asyncErrorProcessor } from "#gilpgcore/asyncErrorProcessor.js"
-import { workEnd } from "./workEnd.js"
-import { workStart } from "./workStart.js"
+import { asyncErrorProcessor } from "./asyncErrorProcessor.js"
 
 /**
  * @template PromiseType
@@ -8,9 +6,8 @@ import { workStart } from "./workStart.js"
  *                                                          } callbackOrPromise
  * @param {PromiseType} errorValue
  */
-export async function workTryCatch(callbackOrPromise, errorValue) {
+export async function asyncTryCatch(callbackOrPromise, errorValue) {
  try {
-  await workStart()
   if (typeof callbackOrPromise === "function") {
    return await callbackOrPromise()
   } else {
@@ -19,7 +16,5 @@ export async function workTryCatch(callbackOrPromise, errorValue) {
  } catch (error) {
   await asyncErrorProcessor(error)
   return errorValue
- } finally {
-  await workEnd()
  }
 }

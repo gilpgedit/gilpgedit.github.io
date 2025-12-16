@@ -1,5 +1,5 @@
 import { exec } from "node:child_process"
-import { directoryRemove } from "./gilpglib/js/node/directoryRemove.js"
+import { directoryRemove } from "./gilpgnode/directoryRemove.js"
 
 directoryRemove("docs")
  .then(async () => {

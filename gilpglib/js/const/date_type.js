@@ -1,1 +1,0 @@
-export const date_type = "date"

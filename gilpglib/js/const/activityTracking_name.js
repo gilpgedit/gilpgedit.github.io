@@ -1,1 +1,0 @@
-export const activityTracking_name = "vt"

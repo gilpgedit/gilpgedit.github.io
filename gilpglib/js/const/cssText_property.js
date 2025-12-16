@@ -1,1 +1,0 @@
-export const cssText_property = "cssText"

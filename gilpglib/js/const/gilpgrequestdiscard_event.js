@@ -1,1 +1,0 @@
-export const gilpgrequestdiscard_event = "gilpgrequestdiscard"
