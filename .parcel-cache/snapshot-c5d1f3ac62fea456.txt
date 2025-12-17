@@ -30,7 +30,7 @@
 55D:\gilpg\Documents\Sitios\gilpgedit.github.io\README.md134094357183836389 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\CM.js134100531484702170 0
 88D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\profiler\lib\types.js134100531468983225 0
-50D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs134104690779071228 1
+50D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs134104697187634901 1
 77D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\picomatch\index.js134100531439791038 0
 98D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\utility-types\dist\utility-types.js.map134100531466790733 0
 104D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\features\media-fragments.js134100531506039010 0
@@ -159,7 +159,7 @@
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\AO.js134100531474592834 0
 53D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\img134100961963871180 1
 111D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc.c134100531482082145 0
-60D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\index.html134104690078493416 0
+60D:\gilpg\Documents\Sitios\gilpgedit.github.io\src\index.html134104696894784615 0
 90D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\caniuse-lite\data\regions\SC.js134100531509768012 0
 93D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@swc\core-win32-x64-msvc\README.md134100531434184975 0
 85D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\lightningcss\node\index.js134100531467872646 0
@@ -686,7 +686,7 @@
 86D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\type-fest\source\entry.d.ts134100531470232518 0
 91D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\regenerator-runtime\package.json134100531443681505 0
 111D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\msgpackr-extract\node_modules\detect-libc\lib\elf.js134100531441683914 0
-61D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\index.html134104690778633666 0
+61D:\gilpg\Documents\Sitios\gilpgedit.github.io\docs\index.html134104697187472908 0
 87D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\type-fest\source\except.d.ts134100531470473534 0
 92D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\@parcel\workers\src\childState.js134100531462327229 0
 97D:\gilpg\Documents\Sitios\gilpgedit.github.io\node_modules\type-fest\source\iterable-element.d.ts134100531472485741 0
