@@ -2,7 +2,7 @@ import {manifest, version} from '@parcel/service-worker';
 
 /* Espera 11 minutos después de hacer los cambios en tu sitio, para depués
  * actualizar este archivo. */
-const VERSION = "3.3"
+const VERSION = "3.4"
 
 // Verifica si el código corre dentro de un service worker.
 if (self instanceof ServiceWorkerGlobalScope) {
