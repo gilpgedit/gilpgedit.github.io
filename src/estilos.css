@@ -186,10 +186,6 @@ dialog#aboutDialog dd {
  margin: 0;
 }
 
-span.size-titlebar {
- font-size: var(--title-font-size);
-}
-
 .cm-editor.ͼ1n .cm-gutters {
  background-color: var(--autocomplete-background-color) !important;
 }
