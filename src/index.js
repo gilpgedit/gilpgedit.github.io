@@ -64,9 +64,6 @@ tryCatch(
   serviceWorkerRegister(
    navigator.serviceWorker.register(new URL('./sw.js', import.meta.url), { type: 'module', scope: '/' })
   )
-  // serviceWorkerRegister(
-  //  navigator.serviceWorker.register(new URL('./sw.js', "https://gilpgedit.github.io/"), { type: 'module', scope: '/' })
-  // )
 
   /**
    * @type {HTMLInputElement}
@@ -102,17 +99,17 @@ tryCatch(
   const darkModePreference = matchMedia('(prefers-color-scheme: dark)')
   darkModePreference.addEventListener("change", () => location.reload())
 
-  let texto = decodeURIComponent(location.hash.replace(/^\#/, ""))
-  if (texto.includes("&")) {
-   const parts = texto.split("&")
+  let text = decodeURIComponent(location.hash.replace(/^\#/, ""))
+  if (text.includes("&")) {
+   const parts = text.split("&")
    codeShowElement.checked = parts[0] === "1"
    windowShowElement.checked = parts[1] === "1"
    consoleShowElement.checked = parts[2] === "1"
-   texto = parts[3] || ""
+   text = parts[3] || ""
   }
 
   var editor = new EditorView({
-   doc: texto,
+   doc: text,
    parent: codeElement,
    extensions: [
     darkModePreference.matches ? gruvboxDark : gruvboxLight,
@@ -195,7 +192,11 @@ tryCatch(
   consoleDisplay()
   stateChanges()
 
-  if (!codeShowElement.checked && windowShowElement.checked && !consoleShowElement.checked) {
+  if (
+   !codeShowElement.checked
+   && windowShowElement.checked
+   && !consoleShowElement.checked
+  ) {
    ejecute()
   }
 
@@ -283,6 +284,7 @@ tryCatch(
     }
    })
   }
+
   function stateChanges() {
    const text = encodeURIComponent(editor.state.doc.toString())
    const s = codeShowElement.checked ? "1" : "0"
@@ -293,40 +295,41 @@ tryCatch(
   }
 
   /**
-   * @param {string} texto
+   * @param {string} text
    */
-  function saveHrefUpdate(texto) {
+  function saveHrefUpdate(text) {
    saveElement.href =
-    URL.createObjectURL(new Blob([texto], { type: "text/html" }))
+    URL.createObjectURL(new Blob([text], { type: "text/html" }))
   }
 
-  onmessage = evt => {
-   const { op, args } = evt.data
-   switch (op) {
-    case "clear":
-     consolePreElement.textContent = ""
-     break
-    case "log": {
-     const div = document.createElement("div")
-     div.textContent = (args || []).join(" ")
-     consolePreElement.append(div)
+  window.onmessage =
+   (/** @type {MessageEvent<{ op: string, args: any[] }>} */ evt) => {
+    const { op, args } = evt.data
+    switch (op) {
+     case "clear":
+      consolePreElement.textContent = ""
+      break
+     case "log": {
+      const div = document.createElement("div")
+      div.textContent = (args || []).join(" ")
+      consolePreElement.append(div)
+     }
+      break
+     case "error": {
+      const div = document.createElement("div")
+      div.classList.add("error")
+      div.textContent = (args || []).join(" ")
+      consolePreElement.append(div)
+     }
+      break
+     case "title": {
+      const title = (args || [])[0]
+      document.title = title + " | GilPG Edit"
+      windowTitleElement.value = title
+     }
+      break
     }
-     break
-    case "error": {
-     const div = document.createElement("div")
-     div.classList.add("error")
-     div.textContent = (args || []).join(" ")
-     consolePreElement.append(div)
-    }
-     break
-    case "title": {
-     const title = (args || [])[0]
-     document.title = title + " | GilPG Edit"
-     windowTitleElement.value = title
-    }
-     break
    }
-  }
 
   window.onerror = function (
   /** @type { Event | string} */ event,
@@ -340,9 +343,7 @@ tryCatch(
    console.error(error)
   }
 
-  window.addEventListener('unhandledrejection', event => {
-   console.error(event)
-  })
+  window.addEventListener('unhandledrejection', event => console.error(event))
 
  },
  undefined
