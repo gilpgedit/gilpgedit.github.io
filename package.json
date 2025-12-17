@@ -1,6 +1,6 @@
 {
  "name": "gilpgedit.github.io",
- "version": "1.0.0",
+ "version": "3.5.0",
  "description": "Editor simplificado para trabajar con html y JavaScript.",
  "type": "module",
  "private": true,
@@ -9,7 +9,7 @@
  },
  "scripts": {
   "clean": "node clean.js",
-  "start": "parcel \"./src/*.html\" --dist-dir ./docs",
+  "start": "parcel \"./src/*.html\" --dist-dir ./docs" ,
   "build": "parcel build \"./src/*.html\" --dist-dir ./docs",
   "buildjs": "node build.js",
   "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,7 @@
  "license": "Apache License Version 2.0",
  "devDependencies": {
   "@parcel/packager-raw-url": "^2.16.3",
+  "@parcel/service-worker": "^2.16.3",
   "@parcel/transformer-inline-string": "^2.16.3",
   "@parcel/transformer-webmanifest": "^2.16.3",
   "parcel": "^2.16.3",
@@ -34,7 +35,6 @@
   "@codemirror/search": "^6.5.11",
   "@codemirror/state": "^6.5.2",
   "@codemirror/view": "^6.39.2",
-  "@parcel/service-worker": "^2.16.3",
   "cm6-theme-basic-dark": "^0.2.0",
   "cm6-theme-basic-light": "^0.2.0",
   "cm6-theme-gruvbox-dark": "^0.2.0",
