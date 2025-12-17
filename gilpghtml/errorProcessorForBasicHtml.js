@@ -1,5 +1,5 @@
-import { errorText } from "../gilpgcore/i18n/text/errorText.js"
-import { errorDisplay } from "../gilpgcore/errorDisplay.js"
+import { errorText } from "/gilpgcore/i18n/text/errorText.js"
+import { errorDisplay } from "/gilpgcore/errorDisplay.js"
 
 /**
  * Logs an error in the console and shows its message property (if any) in an

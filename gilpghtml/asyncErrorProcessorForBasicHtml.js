@@ -1,5 +1,5 @@
-import { asyncErrorDisplay } from "../gilpgcore/asyncErrorDisplay.js"
-import { errorText } from "../gilpgcore/i18n/text/errorText.js"
+import { asyncErrorDisplay } from "/gilpgcore/asyncErrorDisplay.js"
+import { errorText } from "/gilpgcore/i18n/text/errorText.js"
 
 /**
  * Logs an error in the console and shows its message property (if any) in an

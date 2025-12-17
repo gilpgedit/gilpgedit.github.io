@@ -9,7 +9,19 @@
    "ES2017",
    "WebWorker",
    "DOM"
-  ]
+  ],
+  "baseUrl": ".",
+  "paths": {
+   "/*": [
+    "./*"
+   ]
+  }
  },
-  "exclude": ["node_modules", "docs"]
+ "include": [
+  "./**/*"
+ ],
+ "exclude": [
+  "node_modules",
+  "docs"
+ ]
 }
