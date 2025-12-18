@@ -10,11 +10,11 @@
   }
   window.console.log = function (/** @type {any[]} */ ...args) {
    lo.apply(null, args)
-   top.postMessage({ op: "log", args }, "*")
+   top.postMessage({ op: "log", args: args.map(arg => String(arg)) }, "*")
   }
   window.console.error = function (/** @type {any[]} */ ...args) {
    err.apply(null, args)
-   top.postMessage({ op: "error", args }, "*")
+   top.postMessage({ op: "error", args: args.map(arg => String(arg)) }, "*")
   }
   const target = document.querySelector('title')
   if (target) {

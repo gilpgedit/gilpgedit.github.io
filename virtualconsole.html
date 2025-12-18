@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Consola Virtual con postMessage</title>
+ <style>
+  :root {
+   --bg-color: #1e1e1e;
+   --text-color: #d4d4d4;
+   --control-bg: #2d2d2d;
+   --border-color: #3e3e42;
+  }
+
+  body {
+   font-family: sans-serif;
+   background-color: #f0f0f0;
+   padding: 20px;
+  }
+
+  /* Contenedor de la Consola */
+  .vconsole-container {
+   max-width: 900px;
+   margin: 0 auto;
+   background: var(--bg-color);
+   border-radius: 8px;
+   overflow: hidden;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+   display: flex;
+   flex-direction: column;
+  }
+
+  /* Barra de herramientas */
+  .vconsole-toolbar {
+   background: var(--control-bg);
+   padding: 10px;
+   display: flex;
+   gap: 10px;
+   border-bottom: 1px solid var(--border-color);
+  }
+
+  button {
+   background: #444;
+   color: white;
+   border: none;
+   padding: 6px 12px;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 12px;
+  }
+
+  button:hover {
+   background: #555;
+  }
+
+  .btn-download {
+   background: #2e7d32;
+  }
+
+  /* Área de visualización */
+  #console-output {
+   height: 450px;
+   margin: 0;
+   padding: 15px;
+   overflow-y: auto;
+   font-family: 'Consolas', 'Monaco', monospace;
+   font-size: 13px;
+   color: var(--text-color);
+   line-height: 1.5;
+   white-space: pre-wrap;
+   word-break: break-all;
+  }
+
+  /* Colores de sintaxis */
+  .log-line {
+   border-bottom: 1px solid #2a2a2a;
+   padding: 2px 0;
+  }
+
+  .type-log {
+   color: var(--text-color);
+  }
+
+  .type-info {
+   color: #4fc1ff;
+  }
+
+  .type-warn {
+   color: #dcdcaa;
+   background: rgba(220, 220, 170, 0.1);
+  }
+
+  .type-error {
+   color: #f44747;
+   background: rgba(244, 71, 71, 0.1);
+   font-weight: bold;
+  }
+
+  .type-debug {
+   color: #b5cea8;
+   opacity: 0.8;
+  }
+
+  .timestamp {
+   color: #808080;
+   margin-right: 8px;
+   font-size: 11px;
+  }
+ </style>
+</head>
+
+<body>
+
+ <div class="vconsole-container">
+  <div class="vconsole-toolbar">
+   <button onclick="vConsole.clear()">Limpiar</button>
+   <button class="btn-download" onclick="vConsole.downloadLog()">Descargar
+    Logs</button>
+  </div>
+  <pre id="console-output"></pre>
+ </div>
+
+ <script>
+  class VirtualConsole {
+   constructor(outputElement) {
+    this.output = outputElement
+    this.groupLevel = 0
+    this.counters = {}
+    this.timers = {}
+    this.SOURCE_ID = 'v-console-msg'
+
+    // Inicializar el Receptor de Mensajes
+    this.#initReceiver()
+   }
+
+   // --- RECEPTOR (Único que toca el DOM) ---
+   #initReceiver() {
+    window.addEventListener('message', (event) => {
+     if (event.data?.source !== this.SOURCE_ID) return
+
+     const { method, args, type } = event.data
+     this.#processMessage(method, args, type)
+    })
+   }
+
+   #processMessage(method, args, type) {
+    switch (method) {
+     case 'clear':
+      this.output.innerHTML = ''
+      this.groupLevel = 0
+      break
+     case 'group':
+      this.#render(`▼ ${args[0] || 'Grupo'}`, 'log')
+      this.groupLevel++
+      break
+     case 'groupEnd':
+      if (this.groupLevel > 0) this.groupLevel--
+      break
+     default:
+      args.forEach(arg => this.#render(arg, type || 'log'))
+    }
+   }
+
+   #render(message, type) {
+    const line = document.createElement('div')
+    line.className = `log-line type-${type}`
+
+    const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    const indent = "  ".repeat(this.groupLevel)
+
+    let content = (message instanceof Error) ? `${message.stack}` :
+     (typeof message === 'object') ? JSON.stringify(message, null, 2) : message
+
+    line.innerHTML = `<span class="timestamp">${time}</span>${indent}${content}`
+    this.output.appendChild(line)
+    this.output.scrollTop = this.output.scrollHeight
+   }
+
+   // --- EMISOR (postMessage) ---
+   #send(method, args, type = 'log') {
+    window.postMessage({
+     source: this.SOURCE_ID,
+     method,
+     args,
+     type
+    }, "*")
+   }
+
+   // --- MÉTODOS DE LA INTERFAZ CONSOLE ---
+   log(...args) { this.#send('log', args, 'log') }
+   info(...args) { this.#send('info', args, 'info') }
+   warn(...args) { this.#send('warn', args, 'warn') }
+   error(...args) { this.#send('error', args, 'error') }
+   debug(...args) { this.#send('debug', args, 'debug') }
+
+   assert(condition, ...args) {
+    if (!condition) this.#send('log', [`Assertion failed: ${args.join(' ')}`], 'error')
+   }
+
+   count(label = 'default') {
+    this.counters[label] = (this.counters[label] || 0) + 1
+    this.#send('log', [`${label}: ${this.counters[label]}`], 'log')
+   }
+
+   time(label = 'default') { this.timers[label] = performance.now() }
+
+   timeEnd(label = 'default') {
+    if (this.timers[label]) {
+     const dur = (performance.now() - this.timers[label]).toFixed(3)
+     this.#send('log', [`${label}: ${dur}ms`], 'log')
+     delete this.timers[label]
+    }
+   }
+
+   group(label) { this.#send('group', [label]) }
+   groupEnd() { this.#send('groupEnd') }
+   clear() { this.#send('clear') }
+
+   table(data) { this.#send('log', ["--- Table ---", data], 'info') }
+
+   // Captura automática
+   initGlobalCapture() {
+    window.onerror = (msg, url, line, col, error) => {
+     this.error(error || `${msg} en ${url}:${line}`)
+    }
+    window.onunhandledrejection = (e) => {
+     this.error(`Promesa rechazada: ${e.reason}`)
+    }
+   }
+
+   downloadLog() {
+    const blob = new Blob([this.output.innerText], { type: 'text/plain' })
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = `log-${Date.now()}.txt`
+    a.click()
+   }
+  }
+
+  // --- EJEMPLO DE USO ---
+  const vConsole = new VirtualConsole(document.getElementById('console-output'))
+  vConsole.initGlobalCapture()
+
+  vConsole.info("Sistema de mensajería postMessage inicializado.")
+
+  vConsole.group("Test de Métodos")
+  vConsole.log("Este es un log estándar")
+  vConsole.count("Contador A")
+  vConsole.count("Contador A")
+  vConsole.warn("Esto es una advertencia")
+  vConsole.time("ProcesoPesado")
+  setTimeout(() => {
+   vConsole.timeEnd("ProcesoPesado")
+   vConsole.groupEnd()
+   vConsole.error("Error provocado manualmente.")
+   // Error real del navegador
+   eval("variable_que_no_existe++")
+  }, 1000);
+ </script>
+</body>
+
+</html>
