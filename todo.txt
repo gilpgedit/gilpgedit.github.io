@@ -1,2 +1,2 @@
-Fix console methods
+Fix console methods & colors
 i18n missing

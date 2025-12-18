@@ -10,6 +10,8 @@ html {
 @media (prefers-color-scheme: dark) {
 
  html {
+  --bg-color: white;
+  --text-color: black;
   --autocomplete-background-color: #515151;
   --autocomplete-color: white;
   --autocomplete-active-background-color: blue;
@@ -23,6 +25,8 @@ html {
 @media (prefers-color-scheme: light) {
 
  html {
+  --bg-color: white;
+  --text-color: black;
   --autocomplete-background-color: #ece6d9;
   --autocomplete-color: black;
   --autocomplete-active-background-color: cyan;
@@ -120,10 +124,6 @@ body>header h1 img {
  margin-block: 1rem;
 }
 
-.error {
- color: red;
-}
-
 #lblabrir {
  cursor: pointer;
 }
@@ -184,6 +184,41 @@ dialog#aboutDialog {
 
 dialog#aboutDialog dd {
  margin: 0;
+}
+
+.log-line {
+ border-bottom: 1px solid #2a2a2a;
+ padding: 2px 0;
+}
+
+.type-log {
+ color: var(--text-color);
+}
+
+.type-info {
+ color: #4fc1ff;
+}
+
+.type-warn {
+ color: #dcdcaa;
+ background: rgba(220, 220, 170, 0.1);
+}
+
+.type-error {
+ color: #f44747;
+ background: rgba(244, 71, 71, 0.1);
+ font-weight: bold;
+}
+
+.type-debug {
+ color: #b5cea8;
+ opacity: 0.8;
+}
+
+.timestamp {
+ color: #808080;
+ margin-right: 8px;
+ font-size: 11px;
 }
 
 .cm-editor.ͼ1n .cm-gutters {
