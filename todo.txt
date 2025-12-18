@@ -1,1 +1,2 @@
+Fix console methods
 i18n missing

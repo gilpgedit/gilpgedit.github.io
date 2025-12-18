@@ -302,34 +302,64 @@ tryCatch(
     URL.createObjectURL(new Blob([text], { type: "text/html" }))
   }
 
+  const SOURCE_ID = 'v-console-msg'
+  let groupLevel = 0
+
   window.onmessage =
-   (/** @type {MessageEvent<{ op: string, args: any[] }>} */ evt) => {
-    const { op, args } = evt.data
-    switch (op) {
-     case "clear":
-      consolePreElement.textContent = ""
-      break
-     case "log": {
-      const div = document.createElement("div")
-      div.textContent = (args || []).join(" ")
-      consolePreElement.append(div)
-     }
-      break
-     case "error": {
-      const div = document.createElement("div")
-      div.classList.add("error")
-      div.textContent = (args || []).join(" ")
-      consolePreElement.append(div)
-     }
-      break
-     case "title": {
-      const title = (args || [])[0]
-      document.title = title + " | GilPG Edit"
-      windowTitleElement.value = title
-     }
-      break
+   (/** @type {MessageEvent<{
+     source: string,
+     method:string,
+     args: any[],
+     type:string,
+    }>} */ event) => {
+    if (event.data?.source === SOURCE_ID) {
+     const { method, args, type } = event.data
+     processMessage(method, args, type)
     }
    }
+
+  /**
+   * @param {string} method
+   * @param {any[]} args
+   * @param {string} type
+   */
+  function processMessage(method, args, type) {
+   switch (method) {
+    case 'clear':
+     consolePreElement.textContent = ''
+     groupLevel = 0
+     break
+    case 'group':
+     render(`▼ ${args[0] || 'Grupo'}`, 'log')
+     groupLevel++
+     break
+    case 'groupEnd':
+     if (groupLevel > 0) groupLevel--
+     break
+    case "title": {
+     const title = (args || [])[0]
+     document.title = title + " | GilPG Edit"
+     windowTitleElement.value = title
+    }
+    default:
+     args.forEach(arg => render(arg, type || 'log'))
+   }
+  }
+
+  function render(message, type) {
+   const line = document.createElement('div')
+   line.className = `log-line type-${type}`
+
+   const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
+   const indent = "  ".repeat(this.groupLevel)
+
+   let content = (message instanceof Error) ? `${message.stack}` :
+    (typeof message === 'object') ? JSON.stringify(message, null, 2) : message
+
+   line.innerHTML = `<span class="timestamp">${time}</span>${indent}${content}`
+   this.output.appendChild(line)
+   this.output.scrollTop = this.output.scrollHeight
+  }
 
   window.onerror = function (
   /** @type { Event | string} */ event,
