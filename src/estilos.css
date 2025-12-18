@@ -191,10 +191,6 @@ dialog#aboutDialog dd {
  padding: 2px 0;
 }
 
-.type-log {
- color: var(--text-color);
-}
-
 .type-info {
  color: #4fc1ff;
 }

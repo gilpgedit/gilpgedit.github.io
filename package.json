@@ -1,6 +1,6 @@
 {
  "name": "gilpgedit.github.io",
- "version": "3.5.0",
+ "version": "3.6.0",
  "description": "Editor simplificado para trabajar con html y JavaScript.",
  "type": "module",
  "private": true,

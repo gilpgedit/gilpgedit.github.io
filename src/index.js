@@ -341,6 +341,7 @@ tryCatch(
      document.title = title + " | GilPG Edit"
      windowTitleElement.value = title
     }
+    break
     default:
      args.forEach(arg => render(arg, type || 'log'))
    }
@@ -351,29 +352,28 @@ tryCatch(
    line.className = `log-line type-${type}`
 
    const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
-   const indent = "  ".repeat(this.groupLevel)
+   const indent = "  ".repeat(groupLevel)
 
    let content = (message instanceof Error) ? `${message.stack}` :
     (typeof message === 'object') ? JSON.stringify(message, null, 2) : message
 
    line.innerHTML = `<span class="timestamp">${time}</span>${indent}${content}`
-   this.output.appendChild(line)
-   this.output.scrollTop = this.output.scrollHeight
+   consolePreElement.appendChild(line)
+   consolePreElement.scrollTop = consolePreElement.scrollHeight
   }
 
   window.onerror = function (
-  /** @type { Event | string} */ event,
-  /** @type {string} */ _src,
-  /** @type {number} */ línea,
-  /** @type {number} */ col,
+  /** @type {string} */ message,
+  /** @type {string} */ url,
+  /** @type {number} */ line,
+  /** @type {number} */ column,
   /** @type {Error} */ error
   ) {
-   console.error(`[línea: ${línea}, columna: ${col}] `)
-   console.error(event)
-   console.error(error)
+   console.error(`[línea: ${line}, columna: ${column}] `)
+   console.error(error || `${message} en ${url}:${line}: ${column}`)
   }
 
-  window.addEventListener('unhandledrejection', event => console.error(event))
+  window.addEventListener('unhandledrejection', event => console.error(event.reason))
 
  },
  undefined
