@@ -4,11 +4,11 @@
   const SOURCE_ID = 'v-console-msg'
   let counters = {}
   let timers = new Map()
+  const clear = console.clear
   const log = console.log
   const info = console.info
   const warn = console.warn
   const error = console.error
-  const clear = console.clear
   const debug = console.debug
   const assert = console.assert
   const count = console.count
@@ -26,6 +26,10 @@
   const profile = console.profile
   const profileEnd = console.profileEnd
   const timeStamp = console.timeStamp
+  window.console.clear = function () {
+   clear()
+   send('clear')
+  }
   window.console.log = function (...args) {
    log(...args)
    send('log', args, 'log')
@@ -41,10 +45,6 @@
   window.console.error = function (...args) {
    error(...args)
    send('error', args, 'error')
-  }
-  window.console.clear = function () {
-   clear()
-   send('clear')
   }
   window.console.debug = function (...args) {
    debug(...args)
@@ -81,6 +81,8 @@
     const delta = (performance.now() - timers[label]).toFixed(3)
     send('log', [`${label}: ${delta}ms`], 'log')
     delete timers[label]
+  } else {
+   send('warn', `Timer '${label}' does not exist`, 'warn')
    }
   }
   window.console.group = function (label) {
@@ -97,7 +99,12 @@
   }
   window.console.table = function (data, columns) {
    table(data, columns)
-   send('table', [JSON.stringify(data), columns], 'info')
+  if (Array.isArray(data)) {
+   send("--- Table View ---", 'info')
+   send('log', data, 'log')
+  } else {
+   send('log', data, 'log')
+  }
   }
   window.console.dir = function (obj, options) {
    dir(obj, options)
