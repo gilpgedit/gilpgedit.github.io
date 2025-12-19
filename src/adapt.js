@@ -147,11 +147,25 @@
    const config = { childList: true }
    observer.observe(titleElement, config)
   }
-  window.onerror = (message, url, line, column, error) => {
-   console.error(error || `${message} en ${url}:${line}: ${column}`)
+  window.onerror = (message, _url, _line, _column, errorObject) => {
+   error(errorObject)
+   print('error', [message], 'error')
+   return true
   }
   window.addEventListener('unhandledrejection', event => {
-   console.error("Promesa rechazada:", event.reason)
+   const reason = event.reason
+   if (reason) {
+    error(reason)
+    if (reason.message) {
+     print('error', [reason.message], 'error')
+    } else {
+     print('error', [reason], 'error')
+    }
+   } else {
+    error(event)
+    print('error', [event], 'error')
+   }
+   event.preventDefault()
   })
   function print(method, args, type = 'log') {
    if (top) {

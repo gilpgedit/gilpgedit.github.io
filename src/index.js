@@ -94,7 +94,7 @@ tryCatch(
   /** @type {HTMLInputElement} */
   const consoleShowElement = querySelector(document, "#consoleShow")
   const consoleSecElement = querySelector(document, "#consoleSec")
-  const consolePreElement = querySelector(document, "pre")
+  const consoleDivElement = querySelector(document, "#consoleDiv")
 
   const darkModePreference = matchMedia('(prefers-color-scheme: dark)')
   darkModePreference.addEventListener("change", () => location.reload())
@@ -326,7 +326,7 @@ tryCatch(
   function processMessage(method, args, type) {
    switch (method) {
     case 'clear':
-     consolePreElement.textContent = ''
+     consoleDivElement.textContent = ''
      groupLevel = 0
      break
     case 'group':
@@ -348,32 +348,48 @@ tryCatch(
   }
 
   function render(message, type) {
-   const line = document.createElement('div')
-   line.className = `log-line type-${type}`
+   const lineContainer = document.createElement('div')
+   lineContainer.className = "log-line type-" + type
 
-   const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
-   const indent = "  ".repeat(groupLevel)
+   // const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
+   // const indent = "  ".repeat(groupLevel)
 
    let content = (message instanceof Error) ? `${message.stack}` :
     (typeof message === 'object') ? JSON.stringify(message, null, 2) : message
 
-   line.innerHTML = `<span class="timestamp">${time}</span>${indent}${content}`
-   consolePreElement.appendChild(line)
-   consolePreElement.scrollTop = consolePreElement.scrollHeight
+   // lineContainer.innerHTML = `<span class="timestamp">${time}</span>${indent}${content}`
+   lineContainer.textContent = content
+   consoleDivElement.appendChild(lineContainer)
+   consoleDivElement.scrollTop = consoleDivElement.scrollHeight
   }
 
   window.onerror = function (
   /** @type {string} */ message,
-  /** @type {string} */ url,
-  /** @type {number} */ line,
-  /** @type {number} */ column,
-  /** @type {Error} */ error
+  /** @type {string} */ _url,
+  /** @type {number} */ _line,
+  /** @type {number} */ _column,
+  /** @type {Error} */ errorObject
   ) {
-   console.error(`[línea: ${line}, columna: ${column}] `)
-   console.error(error || `${message} en ${url}:${line}: ${column}`)
+   console.error(errorObject)
+   alert(message)
+   return true
   }
 
-  window.addEventListener('unhandledrejection', event => console.error(event.reason))
+  window.addEventListener('unhandledrejection', event => {
+   const reason = event.reason
+   if (reason) {
+    console.error(reason)
+    if (reason.message) {
+     alert(reason.message)
+    } else {
+     alert(reason)
+    }
+   } else {
+    console.error(event)
+    alert(event)
+   }
+   event.preventDefault()
+  })
 
  },
  undefined
