@@ -2,7 +2,7 @@
  const top = window.top
  if (top) {
   const SOURCE_ID = 'v-console-msg'
-  let counters = {}
+  let counters = new Map()
   let timers = new Map()
   const clear = console.clear
   const log = console.log
@@ -28,116 +28,122 @@
   const timeStamp = console.timeStamp
   window.console.clear = function () {
    clear()
-   send('clear')
+   print('clear')
   }
   window.console.log = function (...args) {
    log(...args)
-   send('log', args, 'log')
+   print('log', args, 'log')
   }
   window.console.info = function (...args) {
    info(...args)
-   send('info', args, 'info')
+   print('info', args, 'info')
   }
   window.console.warn = function (...args) {
    warn(...args)
-   send('warn', args, 'warn')
+   print('warn', args, 'warn')
   }
   window.console.error = function (...args) {
    error(...args)
-   send('error', args, 'error')
+   print('error', args, 'error')
   }
   window.console.debug = function (...args) {
    debug(...args)
-   send('debug', args, 'debug')
+   print('debug', args, 'debug')
   }
   window.console.assert = function (condition, ...args) {
    assert(condition, ...args)
-   if (!condition) send('log', [`Assertion failed: ${args.join(' ')}`], 'error')
+   if (!condition) print('log', [`Assertion failed: ${args.join(' ')}`], 'error')
   }
   window.console.count = function (label = 'default') {
    count(label)
-   counters[label] = (counters[label] || 0) + 1
-   send('log', [`${label}: ${counters[label]}`], 'log')
+   counters.set(label, (counters.get(label) || 0) + 1)
+   print('log', [`${label}: ${counters.get(label)}`], 'log')
   }
   window.console.countReset = function (label = 'default') {
    countReset(label)
-   counters[label] = 0
-   send('log', [`${label}: ${counters[label]}`], 'log')
+   if (counters.get(label)) {
+    counters.set(label, 0)
+    print('log', [`${label}: ${counters.get(label)}`], 'log')
+   } else {
+    print("warn", `Count for '${label}' does not exist`, "warn")
+   }
   }
   window.console.time = function (label = 'default') {
    time(label)
-   timers[label] = performance.now()
+   timers.set(label, performance.now())
   }
   window.console.timeLog = function (label = 'default', ...args) {
    timeLog(label)
-   if (timers[label]) {
-    const delta = performance.now() - timers[label].toFixed(3)
-    send('log', `${label}: ${delta}ms`, ...args)
+   const timerValue = timers.get(label)
+   if (timerValue) {
+    const delta = performance.now() - timerValue.toFixed(3)
+    print('log', `${label}: ${delta}ms`, ...args)
    }
   }
   window.console.timeEnd = function (label = 'default') {
    timeEnd(label)
-   if (timers[label]) {
-    const delta = (performance.now() - timers[label]).toFixed(3)
-    send('log', [`${label}: ${delta}ms`], 'log')
-    delete timers[label]
-  } else {
-   send('warn', `Timer '${label}' does not exist`, 'warn')
+   const timerValue = timers.get(label)
+   if (timerValue) {
+    const delta = (performance.now() - timerValue).toFixed(3)
+    print('log', [`${label}: ${delta}ms`], 'log')
+    timers.delete(label)
+   } else {
+    print('warn', `Timer '${label}' does not exist`, 'warn')
    }
   }
   window.console.group = function (label) {
    group(label)
-   send('group', [label])
+   print('group', [label])
   }
   window.console.groupCollapsed = function (label) {
    groupCollapsed(label)
-   send('groupCollapsed', [label])
+   print('groupCollapsed', [label])
   }
   window.console.groupEnd = function () {
    groupEnd()
-   send('groupEnd')
+   print('groupEnd')
   }
   window.console.table = function (data, columns) {
    table(data, columns)
-  if (Array.isArray(data)) {
-   send("--- Table View ---", 'info')
-   send('log', data, 'log')
-  } else {
-   send('log', data, 'log')
-  }
+   if (Array.isArray(data)) {
+    print("--- Table View ---", 'info')
+    print('log', data, 'log')
+   } else {
+    print('log', data, 'log')
+   }
   }
   window.console.dir = function (obj, options) {
    dir(obj, options)
    // En Node, dir muestra una lista interactiva. Aquí formateamos el objeto.
-   send('log', ['[Object Directory]:', obj], 'log')
+   print('log', ['[Object Directory]:', obj], 'log')
   }
   window.console.dirxml = function (...args) {
    dirxml(...args)
    // En navegador suele ser igual a log/dir para elementos XML/DOM
-   send('log', args, 'log')
+   print('log', args, 'log')
   }
   window.console.trace = function (...args) {
    trace(...args)
    const err = new Error()
    err.name = 'Trace'
-   send('log', [...args.map(arg => String(arg), err.stack)], 'log')
+   print('log', [...args, err.stack], 'log')
   }
   window.console.profile = function (label) {
    profile(label)
-   send('info', `Profile '${label}' started (Check browser devtools)`, 'info')
+   print('info', `Profile '${label}' started (Check browser devtools)`, 'info')
   }
   window.console.profileEnd = function (label) {
    profileEnd(label)
-   send('info', `Profile '${label}' finished`, 'info')
+   print('info', `Profile '${label}' finished`, 'info')
   }
   window.console.timeStamp = function (label) {
    timeStamp(label)
-   send('info', `Timestamp: ${label}`, 'info')
+   print('info', `Timestamp: ${label}`, 'info')
   }
   const titleElement = document.querySelector('title')
   if (titleElement) {
-   send('title', [document.title], '')
-   const observer = new MutationObserver(() => send('title', [document.title], ''))
+   print('title', [document.title], '')
+   const observer = new MutationObserver(() => print('title', [document.title], ''))
    const config = { childList: true }
    observer.observe(titleElement, config)
   }
@@ -147,7 +153,7 @@
   window.addEventListener('unhandledrejection', event => {
    console.error("Promesa rechazada:", event.reason)
   })
-  function send(method, args, type = 'log') {
+  function print(method, args, type = 'log') {
    if (top) {
     top.postMessage(
      {

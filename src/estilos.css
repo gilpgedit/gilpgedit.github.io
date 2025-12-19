@@ -10,8 +10,6 @@ html {
 @media (prefers-color-scheme: dark) {
 
  html {
-  --bg-color: white;
-  --text-color: black;
   --autocomplete-background-color: #515151;
   --autocomplete-color: white;
   --autocomplete-active-background-color: blue;
@@ -25,8 +23,6 @@ html {
 @media (prefers-color-scheme: light) {
 
  html {
-  --bg-color: white;
-  --text-color: black;
   --autocomplete-background-color: #ece6d9;
   --autocomplete-color: black;
   --autocomplete-active-background-color: cyan;
